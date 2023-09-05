@@ -1,6 +1,3 @@
 print("test")
-
-
-print("user1")
-
-#user1이 작업함...
+# main branch 가 작업
+print("main")
