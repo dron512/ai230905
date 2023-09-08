@@ -19,8 +19,20 @@
 	int a = 10;
 	out.print("a = "+a);
 	out.print("aa = "+aa);
+	String b = "b입니다....";
 %>
-
+<div>
+	<c:set var="aaa" value="<%=b %>"/>
+	${aaa}
+</div>
 <%@ include file="bottom.jsp" %>
+
 </body>
 </html>
+
+
+
+
+
+
+
