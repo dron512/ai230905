@@ -8,7 +8,10 @@ while True:
     if ch=='1':
         db.doSelect()
     elif ch=='2':
-        db.doInsert()
+        name = input('이름을입력')
+        age = int(input('나이'))
+        gender = input('성별')
+        db.doInsert(name,age,gender)
     elif ch=='3':
         print('종료됩니다.')
         break

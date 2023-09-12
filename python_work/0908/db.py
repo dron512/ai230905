@@ -6,7 +6,7 @@ password="1234"
 database = "test"
 port = 3306
 
-def doInsert():
+def doInsert(name='김길동',age=20,gender='남'):
     try:
         connection = pymysql.connect(host=host,
                                      user=user,
@@ -14,11 +14,11 @@ def doInsert():
                                      database=database,
                                      port=port)
         cursor = connection.cursor()
-        sql = '''
+        sql = f'''
                 INSERT INTO member
                 (NAME,age,gender)
                 VALUES
-                ('이길동',50,'여자');
+                ('{name}',{age},'{gender}');
             '''
         cursor.execute(sql)
         connection.commit()
