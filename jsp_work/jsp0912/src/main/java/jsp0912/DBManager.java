@@ -19,17 +19,20 @@ public class DBManager {
 		System.out.println("생성자호출");
 	}
 	
-	public boolean doInsert(String id,String password) {
+	public boolean doInsert(String id,String password) throws Exception {
 		// sql 실행하는거 만들어야함..
 		Connection conn = null;				// 연결하는 객체
 		PreparedStatement pstmt = null;		// sql 구문 담는 객체
 		try {
-			Class.forName("");				//jar 파일이 추가 되어 있는지 확인
-			
+			Class.forName(dbClass);				//jar 파일이 추가 되어 있는지 확인
+			// 연결..
 			conn = DriverManager.getConnection(dbUrl,dbId,dbPasswrod);
+			// sql 구문
 			pstmt = conn.prepareStatement("insert into member (id,password) values (?,?)");
+			pstmt.setString(1, id);
+			pstmt.setString(2, password);
 			pstmt.executeUpdate();
-			
+			System.out.println("insert 성공");
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
