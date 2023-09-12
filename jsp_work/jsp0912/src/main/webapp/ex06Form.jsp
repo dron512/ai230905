@@ -12,5 +12,6 @@
 		password : <input type="text" name="password"/>
 		<input type="submit" value="전송"/>
 	</form>
+	<a href="ex06Select.jsp">ex06select</a>
 </body>
 </html>
