@@ -51,7 +51,7 @@ public class DBProductManager {
 		try {
 			Class.forName(dbClass); 
 			conn = DriverManager.getConnection(dbUrl, dbId, dbPasswrod);
-			pstmt = conn.prepareStatement("select * from member");
+			pstmt = conn.prepareStatement("select * from product");
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				list.add(
