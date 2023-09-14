@@ -1,4 +1,4 @@
-package jsp0914;
+package aa.bb;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -1,23 +1,26 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="jsp0914.StudentDAO" %>
-<%@ page import="jsp0914.StudentDTO" %>
+<%@ page import="aa.bb.StudentDAO" %>
+<%@ page import="aa.bb.StudentDTO" %>
 <%
 	request.setCharacterEncoding("utf-8");
 %>
+<jsp:useBean id="dto" class="aa.bb.StudentDTO">
+</jsp:useBean>
+<jsp:setProperty property="*" name="dto"/>
+<%=dto %>
+
 <%
-	String hak = request.getParameter("hak");
-	String name = request.getParameter("name");
-	String major = request.getParameter("major");
+	StudentDTO dto2 = new StudentDTO();
+	dto2.setHak(request.getParameter("hak"));
+	dto2.setName(request.getParameter("name"));
+	dto2.setMajor(request.getParameter("major"));
+// 	dto2.setMajor(request.getParameter("major"));
+
 %>
-학번<%=hak %><br/>
-이름<%=name %><br/>
-전공<%=major %><br/>
 <%
-	StudentDAO sdao = new StudentDAO();
-	sdao.insert(new StudentDTO(hak,name,major));
-	
-	List<StudentDTO> list=sdao.select();
-	out.println(list);
+	StudentDAO dao = new StudentDAO();
+	dao.insert(dto);
+	dao.insert(dto2);
 %>

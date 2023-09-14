@@ -12,7 +12,7 @@
 
 	<Service name="Catalina">
 
-		<Connector URIEncoding="UTF-8" connectionTimeout="20000" maxParameterCount="1000" port="80" protocol="HTTP/1.1" redirectPort="8443"/>
+		<Connector URIEncoding="UTF-8" connectionTimeout="20000" maxParameterCount="1000" port="8080" protocol="HTTP/1.1" redirectPort="8443"/>
 		<Engine defaultHost="localhost" name="Catalina">
 
 			<Realm className="org.apache.catalina.realm.LockOutRealm">
@@ -22,9 +22,9 @@
 			<Host appBase="webapps" autoDeploy="true" name="localhost" unpackWARs="true">
 
 				<Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
-
-
-				
+					
+				<Context docBase="test" path="/test" reloadable="true" source="org.eclipse.jst.jee.server:test">
+				</Context>
 			<Context docBase="jsp0914" path="/jsp0914" reloadable="true" source="org.eclipse.jst.jee.server:jsp0914"/></Host>
 		</Engine>
 	</Service>

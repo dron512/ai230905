@@ -21,6 +21,9 @@
 <form method="post" action="ex01pro.jsp">
 	학번<input type="text" name="hak"/><br/>
 	이름<input type="text" name="name"/><br/>
+	나이<input type="text" name="age"/><br/>
+	성별<input type="text" name="gender"/><br/>
+	소속<input type="text" name="department"><br/>
 	전공: <select name="major">
 			<option value="0" selected>선택하세요</option>
 			<option value="컴퓨터공학">컴퓨터공학</option>
