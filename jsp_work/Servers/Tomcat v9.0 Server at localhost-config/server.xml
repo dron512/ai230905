@@ -40,15 +40,16 @@
 
 				<Context docBase="test" path="/test" reloadable="true"
 					source="org.eclipse.jst.jee.server:test">
-					<Resource name="jdbc/basicjsp" auth="Container"
-						type="javax.sql.DataSource"
-						driverClassName="com.mysql.cj.jdbc.Driver" username="root"
-						password="1234" url="jdbc:mysql://localhost:3306/test"
-						maxWait="5000" />
+					<Resource auth="Container"
+						driverClassName="com.mysql.cj.jdbc.Driver" maxWait="5000"
+						name="jdbc/basicjsp" password="1234" type="javax.sql.DataSource"
+						url="jdbc:mysql://localhost:3306/test" username="root" />
 
 				</Context>
 				<Context docBase="jsp0914" path="/jsp0914" reloadable="true"
 					source="org.eclipse.jst.jee.server:jsp0914" />
+				<Context docBase="jsp0915" path="/jsp0915" reloadable="true"
+					source="org.eclipse.jst.jee.server:jsp0915" />
 			</Host>
 		</Engine>
 	</Service>
