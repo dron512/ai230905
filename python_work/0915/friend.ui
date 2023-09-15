@@ -66,6 +66,19 @@
      <string>불러오기</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="loadbtn_2">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>40</y>
+      <width>161</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>불러오기</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
