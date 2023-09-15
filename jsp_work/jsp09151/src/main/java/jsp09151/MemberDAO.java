@@ -10,6 +10,11 @@ import javax.sql.DataSource;
 public class MemberDAO {
 
 	private DataSource ds = null;
+	private static MemberDAO dao = new MemberDAO();
+	
+	public static MemberDAO getInstance() {
+		return dao;
+	}
 	
 	// 생성자 호출할때 ds 객체 담아오기
 	public MemberDAO() {

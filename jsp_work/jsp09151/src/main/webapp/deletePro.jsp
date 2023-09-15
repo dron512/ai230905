@@ -2,8 +2,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	MemberDAO dao = new MemberDAO();
-	
+	MemberDAO dao = MemberDAO.getInstance();
+	System.out.println(dao);
 	String idx = request.getParameter("idx");
 
 	if (idx == null || idx.equals("")){

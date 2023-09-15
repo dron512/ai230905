@@ -6,7 +6,9 @@
 <jsp:setProperty property="*" name="dto" />
 
 <%
-	MemberDAO dao = new MemberDAO();
+	MemberDAO dao = MemberDAO.getInstance();
+	System.out.println(dao);
+
 	boolean result = dao.update(dto);
 	out.println(result);
 	if(result)
