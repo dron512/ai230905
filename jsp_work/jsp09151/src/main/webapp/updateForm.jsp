@@ -8,5 +8,14 @@
 </head>
 <body>
 <h1>updateForm</h1>
+<form action="updatePro.jsp" method="post">
+	idx<input type="text" name="idx"/><br/>
+	아이디 <input type="text" name="id"/><br/>
+	비밀번호 <input type="text" name="password"/><br/>
+	이름 <input type="text" name="name"/><br/>
+	나이 <input type="text" name="age"/><br/>
+	성별 <input type="text" name="gender"/><br/>
+	<input type="submit" value="수정"/>
+</form>
 </body>
 </html>

@@ -6,7 +6,7 @@
 	
 	String idx = request.getParameter("idx");
 
-	if (idx == null){
+	if (idx == null || idx.equals("")){
 		out.println("idx를 입력 하셔야 됩니다.");	
 	}
 	else{

@@ -44,4 +44,63 @@ public class MemberDAO {
 			}
 		}
 	}
+	
+	public boolean update(MemberDTO dto) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement("UPDATE member "
+										+ "	SET id=?, "
+										+ "	PASSWORD=?, "
+										+ "	NAME=?, "
+										+ "	age=?, "
+										+ "	gender=? "
+										+ " WHERE idx=?");
+			pstmt.setString(1, dto.getId());
+			pstmt.setString(2, dto.getPassword());
+			pstmt.setString(3, dto.getName());
+			pstmt.setInt(4, dto.getAge());
+			pstmt.setString(5, dto.getGender());
+			pstmt.setInt(6, dto.getIdx());
+			pstmt.executeUpdate();
+			return true;
+		}catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		finally {
+			try {
+				pstmt.close();
+				conn.close();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
