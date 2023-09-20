@@ -1,4 +1,6 @@
 <%@page import="freeboard.FreeBoardDAO"%>
+<%@page import="freeboard.FreeBoardDTO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -10,15 +12,54 @@
 <body>
 <%
 	FreeBoardDAO dao1 = FreeBoardDAO.getInstance();
-	FreeBoardDAO dao2 = FreeBoardDAO.getInstance();
-	FreeBoardDAO dao3 = FreeBoardDAO.getInstance();
-	FreeBoardDAO dao4 = FreeBoardDAO.getInstance();
+	List<FreeBoardDTO> list = dao1.select();
 %>
+<table border="1">
+	<tr>
+		<th>idx</th>
+		<th>title</th>
+		<th>name</th>
+		<th>wdate</th>
+	</tr>
+	<tr>
+		<td>1</td>
+		<td>2</td>
+		<td>3</td>
+		<td>4</td>
+	</tr>
+	<%
+		for(FreeBoardDTO dto : list){
+			out.println("<tr>");
+			out.println("<td>");
+			out.println(dto.getIdx());
+			out.println("</td>");
+			out.println("<td>");
+			out.println(dto.getTitle());
+			out.println("</td>");
+			out.println("<td>");
+			out.println(dto.getName());
+			out.println("</td>");
+			out.println("<td>");
+			out.println(dto.getWdate());
+			out.println("</td>");
+			out.println("</tr>");
+		}
+	%>
+	<%
+		for(FreeBoardDTO dto : list){
+	%>
+		<tr>
+			<td><%=dto.getIdx() %></td>
+			<td><%=dto.getTitle() %></td>
+			<td><%=dto.getName() %></td>
+			<td><%=dto.getWdate() %></td>
+		</tr>
+	<%
+		}
+	%>
+	
+</table>
 
-dao1 <%=dao1 %><br/>
-dao2 <%=dao2 %><br/>
-dao3 <%=dao3 %><br/>
-dao4 <%=dao4 %><br/>
 
 <c:set  var="a" value="jtsl변수입니다.."/>
 ${a}<br/>
