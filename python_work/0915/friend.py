@@ -10,6 +10,7 @@ class WindowClass(QMainWindow, form_class) :
     def __init__(self) :
         super().__init__()
         self.setupUi(self)
+
         self.savebtn.clicked.connect(self.saveEvent)
         self.loadbtn.clicked.connect(self.loadEvent)
         self.loadbtn_2.clicked.connect(self.loadEvent2)
