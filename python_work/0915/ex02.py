@@ -39,7 +39,7 @@ def doLoad2():
     no5 = web.find_element(By.ID, "drwtNo5").text
     no6 = web.find_element(By.ID, "drwtNo6").text
     bonus = web.find_element(By.ID, "bnusNo").text
-    
+
     web.close() #창 닫기
     return no1,no2,no3,no4,no5,no6,bonus
 
