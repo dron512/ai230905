@@ -1,3 +1,4 @@
+<%@page import="freeboard.FreeBoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -7,6 +8,17 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%
+	FreeBoardDAO dao1 = FreeBoardDAO.getInstance();
+	FreeBoardDAO dao2 = FreeBoardDAO.getInstance();
+	FreeBoardDAO dao3 = FreeBoardDAO.getInstance();
+	FreeBoardDAO dao4 = FreeBoardDAO.getInstance();
+%>
+
+dao1 <%=dao1 %><br/>
+dao2 <%=dao2 %><br/>
+dao3 <%=dao3 %><br/>
+dao4 <%=dao4 %><br/>
 
 <c:set  var="a" value="jtsl변수입니다.."/>
 ${a}<br/>
@@ -25,10 +37,6 @@ ${a}<br/>
 	3. mysql-connector-j-8.033은 mysql 연결가능
 </p>
 
-<Resource name="jdbc/basicjsp" auth="Container"
-	type="javax.sql.DataSource"
-	driverClassName="com.mysql.cj.jdbc.Driver" username="pmh"
-	password="1234" url="jdbc:mysql://localhost:3306/test"
-	maxWaitMillis="5000" />
+
 </body>
 </html>

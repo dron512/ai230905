@@ -121,16 +121,15 @@
 					prefix="localhost_access_log" suffix=".txt" />
 
 
-				<Context docBase="jsp09151" path="/jsp09151"
-					reloadable="true" source="org.eclipse.jst.jee.server:jsp09151">
-					<Resource auth="Container"
-						driverClassName="com.mysql.cj.jdbc.Driver" maxWaitMillis="5000"
-						name="jdbc/basicjsp" password="1234" type="javax.sql.DataSource"
-						url="jdbc:mysql://localhost:3306/test" username="pmh" />
-				</Context>
 				<!-- ctrl + shift + f 자동 정렬 -->
 				<Context docBase="freeboard" path="/freeboard"
-					reloadable="true" source="org.eclipse.jst.jee.server:freeboard" />
+					reloadable="true" source="org.eclipse.jst.jee.server:freeboard" >
+					<Resource name="jdbc/basicjsp" auth="Container"
+						type="javax.sql.DataSource"
+						driverClassName="com.mysql.cj.jdbc.Driver" username="pmh"
+						password="1234" url="jdbc:mysql://localhost:3306/test"
+						maxWaitMillis="5000" />
+				</Context>
 			</Host>
 		</Engine>
 	</Service>
