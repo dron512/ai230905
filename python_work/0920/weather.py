@@ -6,6 +6,9 @@ import loadWeather
 
 form_class = uic.loadUiType("weather.ui")[0]
 
+cnt = 0
+imglist = ['a.png','b.png','c.png']
+
 class WindowClass(QMainWindow, form_class) :
     def __init__(self) :
         super().__init__()
@@ -36,14 +39,15 @@ class WindowClass(QMainWindow, form_class) :
         '''
 
     def imageEvent(self):
-        import matplotlib.pyplot as plt
-
-        plt.plot([10,20], [30,40])
-        plt.savefig('a.png')
-
-        map = QPixmap("a.png")
+        # import matplotlib.pyplot as plt
+        #
+        # plt.plot([10,20], [30,40])
+        # plt.savefig('a.png')
+        global cnt
+        map = QPixmap(imglist[cnt%3])
         map = map.scaled(850,270)
         self.myImage_label.setPixmap(map)
+        cnt += 1
 
 if __name__ == "__main__" :
     app = QApplication(sys.argv)
