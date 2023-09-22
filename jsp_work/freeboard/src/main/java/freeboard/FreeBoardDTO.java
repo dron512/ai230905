@@ -30,9 +30,5 @@ public class FreeBoardDTO {
 	private LocalDate wdate;
 	// 마지막으로 작성시간
 	private LocalDate udate;
-	
-	
-	
-	
 
 }
