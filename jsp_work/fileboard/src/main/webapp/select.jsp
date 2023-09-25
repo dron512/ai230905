@@ -24,6 +24,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<%@ include file="head.jsp" %>
 <style type="text/css">
 	h1{
 		color: blue;
@@ -42,6 +43,7 @@
 </head>
 <body>
 <h1>FileBoard 목록</h1>
+<a href="writeForm.jsp">글쓰기</a>
 <div class="aa">
 	<table id="mytable">
 		<tr>
