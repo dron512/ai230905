@@ -1,3 +1,5 @@
+<%@page import="fileboard.FileBoardDTO"%>
+<%@page import="fileboard.FileBoardDAO"%>
 <%@page import="java.util.Enumeration"%>
 <%@page import="java.nio.file.Files"%>
 <%@page import="java.nio.file.Path"%>
@@ -12,7 +14,7 @@
 	String realFolder ="";
 	String saveFolder = "/filesave"; // 파일 저장 위치
 	String encType = "utf-8";		// 파일저장 인코딩 타임
-	int filesize = 1024*1024*10;	//10MB 설정
+	int filesize = 1024*1024*20;	//10MB 설정
 	
 	
 	ServletContext context = getServletContext();
@@ -24,21 +26,19 @@
 			Files.createDirectories(realPath);
 		}
 		
+		request.setCharacterEncoding("utf-8");
+		
 		// 파일이 자동 저장 됩니다.
 		MultipartRequest mrequest1 = new MultipartRequest(request,realFolder,filesize,new DefaultFileRenamePolicy());
 		
-		String filename1 = mrequest1.getParameter("filename1");
-		String filename2 = mrequest1.getParameter("filename2");
-		String filename3 = mrequest1.getParameter("filename3");
+		String filename[] = new String[3];
 		
 		String name = mrequest1.getParameter("name");
 		String title = mrequest1.getParameter("title");
 		String content = mrequest1.getParameter("content");
 		
-		
-		
 		Enumeration<?> files = mrequest1.getFileNames();
-		
+		int fileIndex = 0;
 		while(files.hasMoreElements()){
 			String ename = (String)files.nextElement(); 
 			String fileSystemname = mrequest1.getFilesystemName(ename);
@@ -47,7 +47,21 @@
 			out.println("<br/>");
 			out.println("fileSystemname = "+fileSystemname+"<br/>");
 			out.println("originalFileName = "+originalFileName+"<br/>");
+			filename[fileIndex] = fileSystemname;
+			fileIndex++;
 		}
+		FileBoardDAO dao = FileBoardDAO.getInstance();
+		dao.insert(
+				FileBoardDTO.builder()
+				.content(content)
+				.title(title)
+				.name(name)
+				.filename1(filename[0])
+				.filename2(filename[1])
+				.filename3(filename[2])
+				.build()
+			);
+		
 	}catch(Exception e){
 		e.printStackTrace();
 	}

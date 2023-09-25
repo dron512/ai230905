@@ -51,7 +51,6 @@
 			<th>이름</th>
 			<th>제목</th>
 			<th>작성일자</th>
-			<th>첨부파일</th>
 		</tr>
 		<% for(FileBoardDTO dto : list ){ %>
 		<tr>
@@ -59,7 +58,6 @@
 			<td><%=dto.getName() %></td>
 			<td><a href="view.jsp?idx=<%=dto.getIdx()%>"><%=dto.getTitle() %></a></td>
 			<td><%=dto.getRgwdate() %></td>
-			<td><%=dto.getFilename() %></td>
 		</tr>	
 		<% } %>
 	</table>

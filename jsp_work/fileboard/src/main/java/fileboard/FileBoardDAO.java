@@ -123,9 +123,9 @@ public class FileBoardDAO {
 			pstmt.setString(2, dto.getTitle());
 			pstmt.setString(3, dto.getContent());
 			pstmt.setString(4, dto.getFilename1());
-			pstmt.setString(4, dto.getFilename2());
-			pstmt.setString(4, dto.getFilename3());
-			pstmt.setInt(5, dto.getIdx());
+			pstmt.setString(5, dto.getFilename2());
+			pstmt.setString(6, dto.getFilename3());
+			pstmt.setInt(7, dto.getIdx());
 			pstmt.executeUpdate();
 			return true;
 		}catch (Exception e) {
@@ -155,9 +155,9 @@ public class FileBoardDAO {
 			pstmt.setString(2, dto.getTitle());
 			pstmt.setString(3, dto.getContent());
 			pstmt.setString(4, dto.getFilename1());
-			pstmt.setString(4, dto.getFilename2());
-			pstmt.setString(4, dto.getFilename3());
-			pstmt.setString(5, LocalDateTime.now().toString());
+			pstmt.setString(5, dto.getFilename2());
+			pstmt.setString(6, dto.getFilename3());
+			pstmt.setString(7, LocalDateTime.now().toString());
 			pstmt.executeUpdate();
 			return true;
 		}catch (Exception e) {

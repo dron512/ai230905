@@ -42,8 +42,14 @@
 		<h4>작성일자 <%=dto.getRgwdate() %></h4>
 		<div id="content_sub"><%=dto.getContent() %></div>
 		<h2>
-			작성자 <%=dto.getName() %>
-			업로드된 파일 <a href="<%=dto.getFilename()%>"><%=dto.getFilename() %></a>
+			작성자 <%=dto.getName()%>
+			업로드된 파일 
+			<a href="<%=dto.getFilename1()%>">
+			<%=dto.getFilename1() %></a>
+			<a href="<%=dto.getFilename2()%>">
+			<%=dto.getFilename2() %></a>
+			<a href="<%=dto.getFilename3()%>">
+			<%=dto.getFilename3() %></a>
 		</h2>
 	</div>
 </div>
