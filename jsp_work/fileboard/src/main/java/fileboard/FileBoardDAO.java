@@ -46,7 +46,9 @@ public class FileBoardDAO {
 						.idx(rs.getInt("idx"))
 						.title(rs.getString("title"))
 						.content(rs.getString("content"))
-						.filename(rs.getString("filename"))
+						.filename1(rs.getString("filename1"))
+						.filename2(rs.getString("filename2"))
+						.filename3(rs.getString("filename3"))
 						.rgwdate(rs.getObject("rgwdate", LocalDateTime.class))
 						.build();
 			}
@@ -83,7 +85,9 @@ public class FileBoardDAO {
 						.idx(rs.getInt("idx"))
 						.title(rs.getString("title"))
 						.content(rs.getString("content"))
-						.filename(rs.getString("filename"))
+						.filename1(rs.getString("filename1"))
+						.filename2(rs.getString("filename2"))
+						.filename3(rs.getString("filename3"))
 						.rgwdate(rs.getObject("rgwdate",LocalDateTime.class))
 						.build());
 			}
@@ -111,12 +115,16 @@ public class FileBoardDAO {
 					+ " SET name=?, "
 					+ " 	title=?, "
 					+ "	    content=?,"
-					+ "	    filename=? "
+					+ "	    filename1=?, "
+					+ "	    filename2=?, "
+					+ "	    filename3=? "
 					+ "WHERE idx=?");
 			pstmt.setString(1, dto.getName());
 			pstmt.setString(2, dto.getTitle());
 			pstmt.setString(3, dto.getContent());
-			pstmt.setString(4, dto.getFilename());
+			pstmt.setString(4, dto.getFilename1());
+			pstmt.setString(4, dto.getFilename2());
+			pstmt.setString(4, dto.getFilename3());
 			pstmt.setInt(5, dto.getIdx());
 			pstmt.executeUpdate();
 			return true;
@@ -140,13 +148,15 @@ public class FileBoardDAO {
 		try {
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement("INSERT INTO fileboard "
-					+ "(name, title, content, filename, rgwdate) "
+					+ "(name, title, content, filename1,filename2,filename3, rgwdate) "
 					+ "VALUES "
-					+ "(?, ?, ?, ?, ?)");
+					+ "(?, ?, ?, ?, ?, ?, ?)");
 			pstmt.setString(1, dto.getName());
 			pstmt.setString(2, dto.getTitle());
 			pstmt.setString(3, dto.getContent());
-			pstmt.setString(4, dto.getFilename());
+			pstmt.setString(4, dto.getFilename1());
+			pstmt.setString(4, dto.getFilename2());
+			pstmt.setString(4, dto.getFilename3());
 			pstmt.setString(5, LocalDateTime.now().toString());
 			pstmt.executeUpdate();
 			return true;

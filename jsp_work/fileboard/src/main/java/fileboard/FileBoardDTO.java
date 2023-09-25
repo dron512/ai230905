@@ -21,7 +21,11 @@ public class FileBoardDTO {
 	private String name;
 	private String title;
 	private String content;
-	private String filename;
+	
+	private String filename1;
+	private String filename2;
+	private String filename3;
+	
 	private LocalDateTime rgwdate;
 	
 }

@@ -26,7 +26,7 @@ input[type='submit']{
 <div id="wrap">
 	<h1>WriteForm</h1>
 	<a href="select.jsp">목록</a>
-	<form method="post" action="writePro.jsp">
+	<form method="post" enctype="multipart/form-data" action="writePro.jsp">
 		<h2>제목</h2>
 		<input type="text" name="title">
 		<h2>내용</h2>
@@ -34,9 +34,18 @@ input[type='submit']{
 		<h2>작성자</h2>
 		<input type="text" name="name"/>
 		<h2>파일업로드</h2>
-		<input type="file" name="filename"/><br/>
+		<input type="file" name="filename1"/><br/>
+		<input type="file" name="filename2"/><br/>
+		<input type="file" name="filename3"/><br/>
 		<input type="submit" value="글쓰기">
 	</form>
 </div>
 </body>
 </html>
+
+
+
+
+
+
+
