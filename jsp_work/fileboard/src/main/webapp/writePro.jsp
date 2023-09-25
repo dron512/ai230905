@@ -29,7 +29,7 @@
 		request.setCharacterEncoding("utf-8");
 		
 		// 파일이 자동 저장 됩니다.
-		MultipartRequest mrequest1 = new MultipartRequest(request,realFolder,filesize,new DefaultFileRenamePolicy());
+		MultipartRequest mrequest1 = new MultipartRequest(request,realFolder,filesize,encType,new DefaultFileRenamePolicy());
 		
 		String filename[] = new String[3];
 		
