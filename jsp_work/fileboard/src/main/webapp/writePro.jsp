@@ -1,3 +1,5 @@
+<%@page import="java.nio.file.StandardCopyOption"%>
+<%@page import="java.nio.file.CopyOption"%>
 <%@page import="fileboard.FileBoardDTO"%>
 <%@page import="fileboard.FileBoardDAO"%>
 <%@page import="java.util.Enumeration"%>
@@ -26,6 +28,11 @@
 			Files.createDirectories(realPath);
 		}
 		
+		realPath = Paths.get(webappFolder);
+		if( !Files.isDirectory(realPath)){
+			Files.createDirectories(realPath);
+		}
+		
 		request.setCharacterEncoding("utf-8");
 		
 		// 파일이 자동 저장 됩니다.
@@ -49,6 +56,11 @@
 			out.println("originalFileName = "+originalFileName+"<br/>");
 			filename[fileIndex] = fileSystemname;
 			fileIndex++;
+			if(fileSystemname!=null){
+				Path source = Paths.get(realFolder+"\\"+fileSystemname);
+				Path target = Paths.get(webappFolder+"\\"+fileSystemname);
+				Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
+			}
 		}
 		FileBoardDAO dao = FileBoardDAO.getInstance();
 		dao.insert(
