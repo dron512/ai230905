@@ -1,15 +1,15 @@
 package fileboard;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Connection;				// 디비연결
+import java.sql.PreparedStatement;		// SQL 만들기
+import java.sql.ResultSet;				// select 내용반환
+import java.time.LocalDateTime;			// 현재 시간...
+import java.util.ArrayList;				// 리스트형태
+import java.util.List;					// 리스트
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.sql.DataSource;
+import javax.naming.Context;			// server.xml context
+import javax.naming.InitialContext;		// 해당되는 context 가져오는
+import javax.sql.DataSource;			// Resource 태그 가져오는
 
 public class FileBoardDAO {
 	
@@ -28,6 +28,42 @@ public class FileBoardDAO {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public FileBoardDTO selectONE(int idx) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement("SELECT * FROM fileboard where idx = ?");
+			pstmt.setInt(1, idx);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				return FileBoardDTO.builder()
+						.name(rs.getString("name"))
+						.idx(rs.getInt("idx"))
+						.title(rs.getString("title"))
+						.content(rs.getString("content"))
+						.filename(rs.getString("filename"))
+						.rgwdate(rs.getObject("rgwdate", LocalDateTime.class))
+						.build();
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			return new FileBoardDTO();
+		}
+		finally {
+			try {
+				rs.close();
+				pstmt.close();
+				conn.close();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return new FileBoardDTO();
 	}
 	
 	public List<FileBoardDTO> selectAll() {

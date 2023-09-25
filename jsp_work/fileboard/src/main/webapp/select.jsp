@@ -6,7 +6,6 @@
 <%
 	FileBoardDAO dao = FileBoardDAO.getInstance();
 
-
 // 	dao.update(
 // 		FileBoardDTO.builder()
 // 		.idx(4)
@@ -56,7 +55,7 @@
 		<tr>
 			<td><%=dto.getIdx() %></td>
 			<td><%=dto.getName() %></td>
-			<td><%=dto.getTitle() %></td>
+			<td><a href="view.jsp?idx=<%=dto.getIdx()%>"><%=dto.getTitle() %></a></td>
 			<td><%=dto.getRgwdate() %></td>
 			<td><%=dto.getFilename() %></td>
 		</tr>	
