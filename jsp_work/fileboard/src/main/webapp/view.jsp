@@ -37,7 +37,7 @@
 	<h1>View</h1>
 	<a href="select.jsp">목록</a>
 	<a href="updateForm.jsp?idx=<%=dto.getIdx()%>">수정</a>
-	<a href="delete.jsp">삭제</a>
+	<a href="delete.jsp?idx=<%=dto.getIdx()%>">삭제</a>
 	<div>
 		<h2>제목 <%=dto.getTitle() %></h2>
 		<h4>작성일자 <%=dto.getRgwdate() %></h4>

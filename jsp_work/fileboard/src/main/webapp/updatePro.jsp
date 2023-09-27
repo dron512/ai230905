@@ -49,10 +49,22 @@
 		String title = mrequest1.getParameter("title");
 		String content = mrequest1.getParameter("content");
 		
+		int idx = Integer.parseInt(mrequest1.getParameter("idx"));
+		
+		String originalfile1 = mrequest1.getParameter("originalfile1");
+		out.println("<br/>originalfile1= "+originalfile1+"<br/>");
+		
+		String originalfile2 = mrequest1.getParameter("originalfile2");
+		out.println("<br/>originalfile2= "+originalfile2+"<br/>");
+		
+		String originalfile3 = mrequest1.getParameter("originalfile3");
+		out.println("<br/>originalfile3= "+originalfile3+"<br/>");
+		
 		Enumeration<?> files = mrequest1.getFileNames();
 		int fileIndex = 0;
 		
 		while(files.hasMoreElements()){
+			out.print("test");
 			String ename = (String)files.nextElement(); 
 			String fileSystemname = mrequest1.getFilesystemName(ename);
 			String originalFileName = mrequest1.getOriginalFileName(ename);
@@ -61,11 +73,25 @@
 			out.println("fileSystemname = "+fileSystemname+"<br/>");
 			out.println("originalFileName = "+originalFileName+"<br/>");
 			
-			// multipartRequest 객체를 이용해서 디스크에 저장된 이름을 filename 배열에 저장
-			filename[fileIndex] = fileSystemname;
+			if(fileSystemname == null){
+				if(fileIndex==0)
+					filename[fileIndex] = originalfile1;
+				else if(fileIndex==1)
+					filename[fileIndex] = originalfile2;
+				else
+					filename[fileIndex] = originalfile3;
+			}
+			else{
+				if(fileIndex==0)
+					Files.delete(Paths.get(webappFolder+"\\"+originalfile1));
+				else if(fileIndex==1)
+					Files.delete(Paths.get(webappFolder+"\\"+originalfile2));
+				else
+					Files.delete(Paths.get(webappFolder+"\\"+originalfile3));
+				filename[fileIndex] = fileSystemname;
+			}
 			fileIndex++;
 			
-			// insert 기능에서 파일 저장하고 ... 복사하는것만 추가 된건거
 			if(fileSystemname!=null){
 				Path source = Paths.get(realFolder+"\\"+fileSystemname);
 				Path target = Paths.get(webappFolder+"\\"+fileSystemname);
@@ -77,6 +103,7 @@
 		FileBoardDAO dao = FileBoardDAO.getInstance();
 		dao.update(
 			FileBoardDTO.builder()
+			.idx(idx)
 			.content(content)
 			.title(title)
 			.name(name)
@@ -86,7 +113,7 @@
 			.build()
 		);
 		
-		response.sendRedirect("select.jsp");
+// 		response.sendRedirect("select.jsp");
 		
 	}catch(Exception e){
 		e.printStackTrace();
