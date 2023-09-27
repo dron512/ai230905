@@ -30,6 +30,34 @@ public class FileBoardDAO {
 		}
 	}
 	
+	public int selectRowCont() {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement("SELECT count(*) as cnt FROM fileboard");
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				return rs.getInt("cnt");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+		finally {
+			try {
+				rs.close();
+				pstmt.close();
+				conn.close();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return 0;
+	}
+	
 	public FileBoardDTO selectONE(int idx) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -68,7 +96,7 @@ public class FileBoardDAO {
 		return new FileBoardDTO();
 	}
 	
-	public List<FileBoardDTO> selectAll() {
+	public List<FileBoardDTO> selectAll(int pageNum) {
 		List<FileBoardDTO> list = new ArrayList<FileBoardDTO>();
 		
 		Connection conn = null;
@@ -77,7 +105,12 @@ public class FileBoardDAO {
 		
 		try {
 			conn = ds.getConnection();
-			pstmt = conn.prepareStatement("SELECT * FROM fileboard");
+			pstmt = conn.prepareStatement("SELECT * FROM fileboard "
+											+ "order by idx desc "
+											+ "limit ?,5");
+			// pageNum 1,2,3,4 번호에 따라서 0,5,10,15
+			pageNum = (pageNum - 1) * 5;
+			pstmt.setInt(1, pageNum);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				list.add(FileBoardDTO.builder()
@@ -148,7 +181,7 @@ public class FileBoardDAO {
 		try {
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement("INSERT INTO fileboard "
-					+ "(name, title, content, filename1,filename2,filename3, rgwdate) "
+					+ "(name, title, content, filename1, filename2, filename3, rgwdate) "
 					+ "VALUES "
 					+ "(?, ?, ?, ?, ?, ?, ?)");
 			pstmt.setString(1, dto.getName());

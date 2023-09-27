@@ -4,20 +4,25 @@
     pageEncoding="UTF-8"%>
 <%@ page import="fileboard.*" %>
 <%
+
+	int pageNum = 1;
+
+	if( request.getParameter("pageNum") != null && 
+			!request.getParameter("pageNum").equals("") ){
+		pageNum = Integer.parseInt(request.getParameter("pageNum"));
+	}
 	FileBoardDAO dao = FileBoardDAO.getInstance();
 
-// 	dao.update(
-// 		FileBoardDTO.builder()
-// 		.idx(4)
-// 		.name("박길동수정")
-// 		.filename("b수정.png")
-// 		.title("게게게목")
-// 		.content("내용")
-// 		.build()
-// 	);
-// 	dao.delete(1);
-
-	List<FileBoardDTO> list = dao.selectAll();
+	List<FileBoardDTO> list = dao.selectAll(pageNum);
+	int rowCnt = dao.selectRowCont();
+	// 행개수가 20이면.. page 4
+	// 행개수가 17 page 4
+	// 행개수가 15 page 3
+	// 행개수가 12 page 3
+	
+	int totalpage = rowCnt / 5 + ( rowCnt % 5>0 ? 1:0 ); 
+	
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -29,9 +34,17 @@
 	h1{
 		color: blue;
 	}
+	a{
+		color: #efefef;
+		text-decoration: none;
+	}
+	tr> td > a:hover{
+		background-color: #ccc;
+	}
 	.aa{
+		color: #efefef;
 		border:1px solid black;
-		background-color: red;
+		background-color: #333;
 		padding: 10px;
 		margin: 30px;
 	}
@@ -43,14 +56,14 @@
 </head>
 <body>
 <h1>FileBoard 목록</h1>
-<a href="writeForm.jsp">글쓰기</a>
+<a style="color:black;" href="writeForm.jsp">글쓰기</a>
 <div class="aa">
 	<table id="mytable">
 		<tr>
-			<th>idx</th>
-			<th>이름</th>
+			<th width="50">idx</th>
+			<th width="100">이름</th>
 			<th>제목</th>
-			<th>작성일자</th>
+			<th width="200">작성일자</th>
 		</tr>
 		<% for(FileBoardDTO dto : list ){ %>
 		<tr>
@@ -61,6 +74,12 @@
 		</tr>	
 		<% } %>
 	</table>
+	<div>
+		<h2>페이지</h2>
+		<% for (int i=1; i<totalpage+1 ; i++){ %>
+			<a href="?pageNum=<%=i%>"><%=i%></a> |
+		<% } %>
+	</div>
 </div>
 <h1>프로젝트 기본설정</h1>
 1. jar추가<br/>
@@ -68,3 +87,19 @@
 3. web.xml 추가<br/>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

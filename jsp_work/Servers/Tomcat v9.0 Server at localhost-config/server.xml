@@ -123,6 +123,7 @@
 
 				<!-- ctrl + shift + f 자동 정렬 -->
 
+
 				<Context docBase="fileboard" path="/fileboard"
 					reloadable="true" source="org.eclipse.jst.jee.server:fileboard">
 					<Resource auth="Container"
