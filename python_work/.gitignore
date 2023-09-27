@@ -1,4 +1,4 @@
 .idea/
 venv1/
-0927/dist/
-0927/build/
+0927/dist/*
+0927/build/*
