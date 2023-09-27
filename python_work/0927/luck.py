@@ -58,7 +58,7 @@ def doYear():
         time.sleep(5)
         web.quit()
 
-def do_today():
+def doToday():
     web = webdriver.Chrome()
     web.get('https://m.unsin.co.kr/unse/free/today/form')
 
