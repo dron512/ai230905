@@ -1,2 +1,4 @@
 .idea/
 venv1/
+dist/
+build/
