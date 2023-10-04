@@ -100,7 +100,7 @@
 			
 		}
 		
-		FileBoardDAO dao = FileBoardDAO.getInstance();
+		FileBoardDAO dao = (FileBoardDAO)FileBoardDAO.getInstance();
 		dao.update(
 			FileBoardDTO.builder()
 			.idx(idx)

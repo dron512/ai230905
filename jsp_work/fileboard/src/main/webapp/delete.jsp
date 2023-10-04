@@ -9,7 +9,7 @@
 	String idx = request.getParameter("idx");
 	String webappFolder = "D:\\work\\jsp_work\\fileboard\\src\\main\\webapp\\images";
 
-	FileBoardDAO dao = FileBoardDAO.getInstance();
+	FileBoardDAO dao = (FileBoardDAO)FileBoardDAO.getInstance();
 	FileBoardDTO dto = dao.selectONE(Integer.parseInt(idx));
 	
 	try{

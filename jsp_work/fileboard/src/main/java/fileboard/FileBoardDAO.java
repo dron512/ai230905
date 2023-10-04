@@ -11,24 +11,9 @@ import javax.naming.Context;			// server.xml context
 import javax.naming.InitialContext;		// 해당되는 context 가져오는
 import javax.sql.DataSource;			// Resource 태그 가져오는
 
-public class FileBoardDAO {
-	
-	private DataSource ds = null;
-	private static FileBoardDAO dao = new FileBoardDAO();
-	
-	public static FileBoardDAO getInstance() {
-		return dao;
-	}
+import db.DBDAO;
 
-	public FileBoardDAO() {
-		try {
-			Context initCtx = new InitialContext();
-			Context envCtx = (Context) initCtx.lookup("java:comp/env");
-			ds = (DataSource) envCtx.lookup("jdbc/basicjsp");
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+public class FileBoardDAO extends DBDAO{
 	
 	public int selectRowCont() {
 		Connection conn = null;

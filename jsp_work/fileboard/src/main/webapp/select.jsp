@@ -11,7 +11,7 @@
 			!request.getParameter("pageNum").equals("") ){
 		pageNum = Integer.parseInt(request.getParameter("pageNum"));
 	}
-	FileBoardDAO dao = FileBoardDAO.getInstance();
+	FileBoardDAO dao = (FileBoardDAO)FileBoardDAO.getInstance();
 
 	List<FileBoardDTO> list = dao.selectAll(pageNum);
 	int rowCnt = dao.selectRowCont();
@@ -60,16 +60,22 @@
 		margin: 0;
 	}
 </style>
+<script type="text/javascript">
+	function memberForm(){
+		location.href='member/memberForm.jsp';
+	}
+</script>
 </head>
 <body>
 <h1>FileBoard 목록</h1>
 <a style="color:black;" href="writeForm.jsp">글쓰기</a>
 <div class="login">
 	<h2>로그인</h2>
-	<form>
+	<form action="member/loginPro.jsp">
 		아이디 <input type="text" name="id"/><br/> 비밀번호 <input type="password" name="password"/>
 		<div style="position: absolute; bottom: 0; right: 0;">
-			<input type="submit" value="로그인" style="margin-right: 20px;"/><input type="button" value="회원가입"/>
+			<input type="submit" value="로그인" style="margin-right: 10px;"/>
+			<input type="button" value="회원가입" onclick="memberForm();"/>
 		</div>
 	</form>
 </div>

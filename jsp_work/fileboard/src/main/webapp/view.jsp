@@ -6,7 +6,7 @@
 <%
 	String idx = request.getParameter("idx");
 
-	FileBoardDAO dao = FileBoardDAO.getInstance();
+	FileBoardDAO dao = (FileBoardDAO)FileBoardDAO.getInstance();
 	FileBoardDTO dto = dao.selectONE(Integer.parseInt(idx));
 %>
 
