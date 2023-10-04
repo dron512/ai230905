@@ -15,13 +15,7 @@
 
 	List<FileBoardDTO> list = dao.selectAll(pageNum);
 	int rowCnt = dao.selectRowCont();
-	// 행개수가 20이면.. page 4
-	// 행개수가 17 page 4
-	// 행개수가 15 page 3
-	// 행개수가 12 page 3
-	
 	int totalpage = rowCnt / 5 + ( rowCnt % 5>0 ? 1:0 ); 
-	
 	
 %>
 <!DOCTYPE html>
@@ -52,11 +46,33 @@
 		border:5px solid black;
 		width:100%;
 	}
+	.login{
+		width:200px;
+		height:100px;
+		background-color: red;
+		position: absolute;
+		top:20px; right:20px;
+	}
+	.login input[type='text'], input[type='password']{
+		width:120px;
+	}
+	h2{
+		margin: 0;
+	}
 </style>
 </head>
 <body>
 <h1>FileBoard 목록</h1>
 <a style="color:black;" href="writeForm.jsp">글쓰기</a>
+<div class="login">
+	<h2>로그인</h2>
+	<form>
+		아이디 <input type="text" name="id"/><br/> 비밀번호 <input type="password" name="password"/>
+		<div style="position: absolute; bottom: 0; right: 0;">
+			<input type="submit" value="로그인" style="margin-right: 20px;"/><input type="button" value="회원가입"/>
+		</div>
+	</form>
+</div>
 <div class="aa">
 	<table id="mytable">
 		<tr>
