@@ -60,11 +60,7 @@
 		margin: 0;
 	}
 </style>
-<script type="text/javascript">
-	function memberForm(){
-		location.href='member/memberForm.jsp';
-	}
-</script>
+
 </head>
 <body>
 <h1>FileBoard 목록</h1>
