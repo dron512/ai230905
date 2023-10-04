@@ -74,7 +74,7 @@
 			
 		}
 		
-		FileBoardDAO dao = (FileBoardDAO)FileBoardDAO.getInstance();
+		FileBoardDAO dao = FileBoardDAO.getInstance();
 		dao.insert(
 			FileBoardDTO.builder()
 			.content(content)

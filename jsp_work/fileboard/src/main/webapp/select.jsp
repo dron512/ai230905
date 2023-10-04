@@ -11,7 +11,7 @@
 			!request.getParameter("pageNum").equals("") ){
 		pageNum = Integer.parseInt(request.getParameter("pageNum"));
 	}
-	FileBoardDAO dao = (FileBoardDAO)FileBoardDAO.getInstance();
+	FileBoardDAO dao = FileBoardDAO.getInstance();
 
 	List<FileBoardDTO> list = dao.selectAll(pageNum);
 	int rowCnt = dao.selectRowCont();

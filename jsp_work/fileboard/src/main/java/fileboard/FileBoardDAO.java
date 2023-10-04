@@ -7,13 +7,17 @@ import java.time.LocalDateTime;			// 현재 시간...
 import java.util.ArrayList;				// 리스트형태
 import java.util.List;					// 리스트
 
-import javax.naming.Context;			// server.xml context
-import javax.naming.InitialContext;		// 해당되는 context 가져오는
-import javax.sql.DataSource;			// Resource 태그 가져오는
+import javax.sql.DataSource;
 
 import db.DBDAO;
 
-public class FileBoardDAO extends DBDAO{
+public class FileBoardDAO{
+	private DataSource ds = DBDAO.getInstance().ds;
+	private static FileBoardDAO dao = new FileBoardDAO();
+
+	public static FileBoardDAO getInstance() {
+		return dao;
+	}
 	
 	public int selectRowCont() {
 		Connection conn = null;

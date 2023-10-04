@@ -7,10 +7,13 @@ import javax.sql.DataSource;
 import fileboard.FileBoardDAO;
 
 public class DBDAO {
-	protected DataSource ds = null;
-	private static DBDAO dao = new FileBoardDAO();
+	public static DataSource ds = null;
+	private static DBDAO dao = null;
 	
 	public static DBDAO getInstance() {
+		if(dao == null) {
+			dao = new DBDAO();
+		}
 		return dao;
 	}
 
