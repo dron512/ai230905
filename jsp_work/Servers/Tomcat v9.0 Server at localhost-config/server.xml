@@ -122,11 +122,8 @@
 
 
 				<!-- ctrl + shift + f 자동 정렬 -->
-
-
-
 				<Context docBase="fileboard" path="/fileboard"
-					reloadable="true" source="org.eclipse.jst.jee.server:fileboard" >
+					reloadable="true" source="org.eclipse.jst.jee.server:fileboard">
 					<Resource auth="Container"
 						driverClassName="com.mysql.cj.jdbc.Driver" maxWaitMillis="5000"
 						name="jdbc/basicjsp" password="1234" type="javax.sql.DataSource"

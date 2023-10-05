@@ -1,5 +1,9 @@
 package member;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 import javax.sql.DataSource;
 
 import db.DBDAO;
@@ -13,10 +17,38 @@ public class MemberDAO{
 		return dao;
 	}
 
-	// 0 로그인 성공 1 비번 체크 2 아이디 체크
+	// 0 로그인 성공 1 로그인 실패 
 	public int getCheck(String id,String password) {
-		
-		
-		return 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement("SELECT * from member where id=? and password=?");
+			pstmt.setString(1, id);
+			pstmt.setString(2, password);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				return 0;
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			return 1;
+		}
+		finally {
+			try {
+				rs.close();
+				pstmt.close();
+				conn.close();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return 1;
 	}
 }
+
+
+
+
+
