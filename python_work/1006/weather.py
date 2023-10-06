@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import *
 
 from PyQt5 import uic
 
+import weather_ex
 form_class = uic.loadUiType("weather.ui")[0]
 
 class WindowClass(QMainWindow, form_class) :
@@ -15,6 +16,16 @@ class WindowClass(QMainWindow, form_class) :
         self.table.setHorizontalHeaderLabels(tableColumn)
         self.button.clicked.connect(self.btn)
 
+        try:
+            data = weather_ex.doLoad()
+            for i in range(len(data.index)):
+                self.table.setRowCount(self.table.rowCount()+1)
+                for j in range(len(data.columns)):
+                    item = QTableWidgetItem(str(data.iloc[i, j]))
+                    self.table.setItem(i, j, item)
+        except Exception as e:
+            print(e)
+
     def btn(self):
         try:
             행개수 = self.table.rowCount()
@@ -25,6 +36,7 @@ class WindowClass(QMainWindow, form_class) :
             최고 = self.edit3.text()
             날씨 = self.edit4.text()
 
+            weather_ex.doSave(도시,최저,최고,날씨)
             self.table.setItem(행개수, 0,QTableWidgetItem(도시))
             self.table.setItem(행개수, 1, QTableWidgetItem(최저))
             self.table.setItem(행개수, 2, QTableWidgetItem(최고))
