@@ -18,9 +18,8 @@ public class MainSpring {
 	public static void main(String[] args) throws IOException {
 		
 		ctx = new AnnotationConfigApplicationContext(AppConf1.class, AppConf2.class);
-
+//		ctx = new AnnotationConfigApplicationContext(AppConf1.class);
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		
 		while (true) {
 			help();
 			String command = br.readLine();

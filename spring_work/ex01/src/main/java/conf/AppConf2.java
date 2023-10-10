@@ -16,7 +16,9 @@ public class AppConf2 {
 	
 	@Bean
 	public MemberService memberService() {
-		return new MemberService(memberDAO);
+		MemberService ms = new MemberService();
+		ms.setMemberDAO(memberDAO);
+		return ms;
 	}
 	
 	@Bean
