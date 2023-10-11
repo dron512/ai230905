@@ -32,17 +32,24 @@ public class MainSpring {
 			else if (command.startsWith("new ")) {
 				processNewCommand(command.split(" "));
 			}
+			else if ( command.startsWith("list")) {
+				processListCommand();
+			}
 		}
 		ctx.close();
 	}
 	
+	private static void processListCommand() {
+		MemberService ms = ctx.getBean(MemberService.class);
+		ms.list();
+	}
+
 	// new dron512@naver.com 홍길동 1234 1234 
 	private static void processNewCommand(String[] args) {
 		if( args.length != 5 ) {
 			System.out.println("\nnew email 이름 비밀번호 확인 순서로 입력 하세요\n");
 			return;
 		}
-		
 		MemberRequest mr = MemberRequest.builder()
 							.email(args[1])
 							.name(args[2])
@@ -55,9 +62,14 @@ public class MainSpring {
 					+ "입력하신 비번이 다릅니다.");
 			return;
 		}
-		
 		MemberService ms = ctx.getBean(MemberService.class);
-		ms.regist();
+		try {
+			ms.regist(mr);
+			System.out.println("등록되었습니다.");
+		} catch (Exception e) {
+			System.out.println("중복되는 이메일있습니다.");
+		}
+		
 	}
 	
 	private static void help() {
