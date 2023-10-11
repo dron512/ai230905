@@ -14,7 +14,11 @@ class WindowClass(QMainWindow, form_class) :
         self.table.setColumnCount(4)
         tableColumn = ['지역','최저','최고','날씨']
         self.table.setHorizontalHeaderLabels(tableColumn)
+        self.table.setSelectionMode(QAbstractItemView.SingleSelection)
+        # 저장
         self.button.clicked.connect(self.btn)
+        # 삭제
+        self.button2.clicked.connect(self.btn2)
 
         try:
             data = weather_ex.doLoad()
@@ -26,7 +30,6 @@ class WindowClass(QMainWindow, form_class) :
         except Exception as e:
             print(e)
 
-        self.button2.clicked.connect(self.btn2)
 
     def btn(self):
         try:
@@ -54,7 +57,8 @@ class WindowClass(QMainWindow, form_class) :
 
     def btn2(self):
         try:
-            weather_ex.doDelete(2)
+            selected_row = self.table.currentRow()
+            weather_ex.doDelete(selected_row)
             data = weather_ex.doLoad()
             self.table.setRowCount(len(data.index))
             for i in range(len(data.index)):

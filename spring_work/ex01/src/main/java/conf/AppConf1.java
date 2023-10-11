@@ -9,11 +9,8 @@ import components.MemberDAO;
 @Configuration
 //@Import(AppConf2.class)
 public class AppConf1 {
-	
 	@Bean
 	public MemberDAO memberDAO() {
 		return new MemberDAO();
 	}
-	
-	
 }

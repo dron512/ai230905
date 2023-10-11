@@ -23,7 +23,6 @@ def doSave(도시,최저,최고,날씨):
     data.loc[len(data)] = [도시,최저,최고,날씨]
     data.to_excel('data.xlsx')
 
-
 def doDelete(index):
     try:
         data = pd.read_excel('data.xlsx',usecols=['도시','최저','최고','날씨'])
@@ -38,7 +37,6 @@ def doDelete(index):
     data = data.drop(index=index)
     data.to_excel('data.xlsx')
 
-
 def doLoad():
-    data = pd.read_excel('data.xlsx')
-    return data[data.columns[1:]]
+    data = pd.read_excel('data.xlsx',usecols=[1,2,3,4])
+    return data
