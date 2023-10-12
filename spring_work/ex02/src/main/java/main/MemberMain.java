@@ -13,10 +13,8 @@ public class MemberMain {
 		
 		MemberService ms = ctx.getBean(MemberService.class);
 		MemberDAO md = ctx.getBean(MemberDAO.class);
-		
-		
-		System.out.println(ms);
-		System.out.println(md);
+//		md.test();
+		md.test2();
 		
 		ctx.close();
 	}
