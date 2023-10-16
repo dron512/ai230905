@@ -162,7 +162,7 @@
 			   
 	     	
 
-      <Context docBase="sp5-chap10" path="/sp5-chap10" reloadable="true" source="org.eclipse.jst.jee.server:sp5-chap10"/></Host>
+      <Context docBase="chap11" path="/chap11" reloadable="true" source="org.eclipse.jst.jee.server:chap11"/></Host>
     </Engine>
   </Service>
 </Server>
