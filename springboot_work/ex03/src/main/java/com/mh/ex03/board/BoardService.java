@@ -8,10 +8,13 @@ import java.util.List;
 @Service
 public class BoardService {
 
+//    @Autowired
+//    BoardDao boardDao;
+
     @Autowired
-    BoardDao boardDao;
+    BoardRepository boardRepository;
 
     public List<BoardDto> list(){
-        return boardDao.list();
+        return boardRepository.list();
     }
 }

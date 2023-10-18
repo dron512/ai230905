@@ -9,10 +9,10 @@ import java.util.List;
 @Repository
 public class BoardDao {
 
-    @Autowired
-    SqlSession sqlSession;
-    public List<BoardDto> list() {
-        List<BoardDto> list = sqlSession.selectList("board.list");
-        return list;
-    }
+//    @Autowired
+//    SqlSession sqlSession;
+//    public List<BoardDto> list() {
+//        List<BoardDto> list = sqlSession.selectList("board.list");
+//        return list;
+//    }
 }
