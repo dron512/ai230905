@@ -17,4 +17,5 @@ public class BoardService {
     public List<BoardDto> list(){
         return boardRepository.list();
     }
+
 }
