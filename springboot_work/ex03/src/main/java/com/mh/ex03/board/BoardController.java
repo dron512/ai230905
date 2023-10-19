@@ -1,9 +1,11 @@
 package com.mh.ex03.board;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -14,10 +16,22 @@ public class BoardController {
 
     @Autowired
     BoardService boardService;
+
     @GetMapping("list")
-    public String list(Model model){
+    public String list(Model model) {
         List<BoardDto> list = boardService.list();
-        model.addAttribute("list",list);
+        model.addAttribute("list", list);
         return "board/list";
+    }
+
+    @GetMapping("writeform")
+    public String writeform(Model model) {
+        return "board/writeform";
+    }
+
+    @PostMapping("writeproc")
+    public String writeproc(@Valid BoardReq boardReq) {
+        System.out.println("boardReq " + boardReq);
+        return "board/writeform";
     }
 }

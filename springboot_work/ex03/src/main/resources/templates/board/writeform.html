@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/layout :: head('board')}">
+</head>
+<body>
+    <nav th:replace="~{layout/layout :: nav('board')}"></nav>
+    <div class="container p-3">
+        <h1>Board > list</h1>
+        <div class="row">
+            <div class="col">
+                <form action="/board/writeproc" method="post">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" name="title" class="form-control" id="title" placeholder="title">
+                    </div>
+                    <div class="mb-3">
+                        <label for="content" class="form-label">Content</label>
+                        <textarea name="content" class="form-control" id="content" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">name</label>
+                        <input name="name" type="text" class="form-control" id="name" placeholder="name">
+                    </div>
+                    <div class="mb-3 row justify-content-between">
+                        <div class="col-3">
+                            <input type="submit" class="btn btn-dark" value="저장"/>
+                        </div>
+                        <div class="col-3 d-flex justify-content-end">
+                            <a href="/board/list" class="btn btn-dark">목록</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
