@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layout/layout :: head('board')">
+<head th:replace="~{layout/layout :: head('translation')}">
 </head>
 <body>
-    <nav th:replace="layout/layout :: nav('board')"></nav>
+    <nav th:replace="~{layout/layout :: nav('translation')}"></nav>
     <div class="container p-3">
-        <h1>List</h1>
+        <h1>Translation > list</h1>
         <div class="row">
             <div class="col">
                 <table class="table">

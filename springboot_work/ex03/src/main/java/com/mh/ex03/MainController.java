@@ -15,8 +15,6 @@ public class MainController {
 
     @GetMapping("/")
     public String index(){
-        System.out.println("aa = "+aa);
-        System.out.println("asdfqwer = "+asdfqwer);
         return "index";
     }
 

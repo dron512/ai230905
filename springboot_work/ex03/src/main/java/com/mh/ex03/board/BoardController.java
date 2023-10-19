@@ -18,6 +18,6 @@ public class BoardController {
     public String list(Model model){
         List<BoardDto> list = boardService.list();
         model.addAttribute("list",list);
-        return "list";
+        return "board/list";
     }
 }

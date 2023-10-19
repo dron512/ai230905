@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layout/layout :: head('home')">
+<head th:replace="~{layout/layout :: head('home')}">
 </head>
 <body>
-    <nav th:replace="layout/layout :: nav('home')"></nav>
+    <nav th:replace="~{layout/layout :: nav('home')}"></nav>
     <div class="container p-3">
         <h1>Index</h1>
         <div class="slider">
