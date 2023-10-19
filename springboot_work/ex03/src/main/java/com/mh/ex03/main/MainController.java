@@ -1,4 +1,4 @@
-package com.mh.ex03;
+package com.mh.ex03.main;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
