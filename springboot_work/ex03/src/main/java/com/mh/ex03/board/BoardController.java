@@ -30,6 +30,7 @@ public class BoardController {
     public String writeform(Model model,
                             BoardReq boardReq,
                             BindingResult result) {
+        model.addAttribute("first","true");
         return "board/writeform";
     }
 
