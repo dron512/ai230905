@@ -58,7 +58,11 @@ public class MemberController {
                         .gender(memberReq.getGender())
                         .build();
 
-        memberService.insert(member);
+        String ret = memberService.insert(member);
+        model.addAttribute("ret",ret);
+        if(ret.equals("duplicate")){
+            return "member/writeform";
+        }
         // 회원 추가 끝
         
         // 에러가 없으면 회원 목록 보는 주소로 이동

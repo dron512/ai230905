@@ -9,4 +9,6 @@ public interface MemberRepository {
 
     public List<Member> list();
     public void insert(Member member);
+
+    public Member findByEmail(String email);
 }

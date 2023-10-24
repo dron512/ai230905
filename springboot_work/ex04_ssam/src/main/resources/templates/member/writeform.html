@@ -12,12 +12,17 @@
             <form action="/member/writeproc" method="post" th:object="${memberReq}">
                 <div class="mb-3">
                     <label for="email" class="form-label">email</label>
-                    <input type="text" name="email" id="email" placeholder="title"
-                           th:field="*{email}"
-                           th:class="${#fields.hasErrors('email')}? 'form-control is-invalid':'form-control' "
-                           th:classappend="${first != 'true'} ? 'is-valid'"
-                           />
+                    <div>
+                        <input type="text" name="email" id="email" placeholder="title"
+                               th:field="*{email}"
+                               th:class="${#fields.hasErrors('email') or ret == 'duplicate'}? 'form-control is-invalid':'form-control' "
+                               th:classappend="${first != 'true' and ret != 'duplicate' } ? 'is-valid'"
+                               style="width:79%;display:inline;"
+                               />
+                        <button class="btn btn-dark">중복체크</button>
+                    </div>
                     <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="invalid-feedback"></p>
+                    <p th:if="${ret == 'duplicate' }" class="text-danger" >email 중복입니다.</p>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">password</label>

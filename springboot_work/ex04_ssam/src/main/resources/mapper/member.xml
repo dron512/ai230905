@@ -14,4 +14,8 @@
         (#{email}, #{password}, #{gender})
     </insert>
 
+    <select id="findByEmail" parameterType="String" resultType="Member">
+        select * from member where email = #{email}
+    </select>
+
 </mapper>

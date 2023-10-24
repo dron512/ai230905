@@ -8,12 +8,15 @@ public class MemberService {
     @Autowired
     MemberRepository memberRepository;
 
-    public void insert(Member member){
+    public String insert(Member member){
         Member dbMember = memberRepository.findByEmail(member.getEmail());
 
         System.out.println(dbMember);
-//        if(dbMember==null)
-//            memberRepository.insert(member);
-
+        if(dbMember==null) {
+            memberRepository.insert(member);
+            return "success";
+        }else{
+            return "duplicate";
+        }
     }
 }
