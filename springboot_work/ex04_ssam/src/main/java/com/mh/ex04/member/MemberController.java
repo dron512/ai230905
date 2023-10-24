@@ -5,10 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -59,6 +56,7 @@ public class MemberController {
                         .build();
 
         String ret = memberService.insert(member);
+        System.out.println(ret);
         model.addAttribute("ret",ret);
         if(ret.equals("duplicate")){
             return "member/writeform";
@@ -67,6 +65,22 @@ public class MemberController {
         
         // 에러가 없으면 회원 목록 보는 주소로 이동
         return "redirect:/member/list";
+    }
+
+
+    @GetMapping("emailcheck")
+    @ResponseBody
+    public String emailcheck(String email){
+        System.out.println(email);
+
+        Member dbMember = memberRepository.findByEmail(email);
+
+        if( dbMember !=null )
+            return "fail";
+        else{
+            return "suc";
+        }
+
     }
 }
 
