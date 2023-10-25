@@ -33,7 +33,7 @@
                     <a th:classappend="${menu} == 'member'? 'active text-success' " class="nav-link" aria-current="page" th:href="@{/member/list}">Member</a>
                 </li>
                 <li class="nav-item">
-                    <a th:classappend="${menu} == 'board'? 'active text-success' " class="nav-link" th:href="@{/board/list}">Board</a>
+                    <a th:classappend="${menu} == 'board'? 'active text-success' " class="nav-link" th:href="@{/board/list(pageNum=1)}">Board</a>
                 </li>
                 <li class="nav-item">
                     <a th:classappend="${menu} == 'guestbook'? 'active text-success' " class="nav-link" th:href="@{/guestbook/list}">GuestBook</a>

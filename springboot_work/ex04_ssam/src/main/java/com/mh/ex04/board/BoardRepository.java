@@ -7,7 +7,9 @@ import java.util.List;
 @Mapper
 public interface BoardRepository {
 
-    public List<Board> list();
+    public List<Board> list(int pageNum);
     public void insert(Board board);
+
+    public int countRow();
 
 }

@@ -23,6 +23,28 @@
         </div>
     </div>
     <div class="row">
+        <h1>총 페이지 개수 = [[ ${countPage} ]]</h1>
+        <h1>총 행 개수 = [[ ${countRow} ]]</h1>
+        <h1>현재 페이지 [[${pageNum}]]</h1>
+        <div class="col d-flex justify-content-center">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" th:href="@{/board/list(pageNum=${pageNum-1})}">Previous</a>
+                    </li>
+                    <li th:each="i:${#numbers.sequence(1,countPage)}" class="page-item">
+                        <a class="page-link" th:href="@{/board/list(pageNum=${i})}"
+                                            th:classappend="${#strings.replace(param.pageNum,' ','')} == ${i} ? 'active' : ''"
+                        >[[ ${i} ]]</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" th:href="@{/board/list(pageNum=${pageNum+1})}">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="row">
         <div class="col">
             <a href="/board/writeform" class="btn btn-dark">글쓰기</a>
         </div>

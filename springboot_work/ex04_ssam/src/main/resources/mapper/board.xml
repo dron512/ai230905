@@ -3,8 +3,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mh.ex04.board.BoardRepository">
 
-    <select id="list" resultType="Board">
-        select * from board
+    <select id="list" resultType="Board" parameterType="Integer">
+        SELECT * FROM board
+        ORDER BY idx desc
+        LIMIT #{pageNum},5;
+    </select>
+
+    <select id="countRow" resultType="Integer">
+        select count(*) from board
     </select>
 
     <insert id="insert" parameterType="Board">
