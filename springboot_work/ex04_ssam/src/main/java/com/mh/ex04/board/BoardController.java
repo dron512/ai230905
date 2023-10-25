@@ -63,4 +63,10 @@ public class BoardController {
         return "redirect:/board/list";
     }
 
+    @GetMapping("view")
+    public String view(Model model,int idx){
+        Board board = boardRepository.selectRow(idx);
+        model.addAttribute("board",board);
+        return "board/view";
+    }
 }

@@ -11,5 +11,6 @@ public interface BoardRepository {
     public void insert(Board board);
 
     public int countRow();
+    public Board selectRow(int idx);
 
 }

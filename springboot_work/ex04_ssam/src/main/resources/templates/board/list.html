@@ -16,7 +16,9 @@
                 </tr>
                 <tr th:each="board : ${list}">
                     <td th:text="${board.idx}"></td>
-                    <td th:text="${board.title}"></td>
+                    <td>
+                        <a th:href="@{/board/view(idx=${board.idx})}" th:text="${board.title}"></a>
+                    </td>
                     <td th:text="${board.name}"></td>
                 </tr>
             </table>
@@ -30,7 +32,9 @@
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
                     <li class="page-item">
-                        <a class="page-link" th:href="@{/board/list(pageNum=${pageNum-1})}">Previous</a>
+                        <a class="page-link" th:href="@{/board/list(pageNum=${pageNum-1})}"
+                                th:classappend="${pageNum} == 1 ? 'disabled'"
+                        >Previous</a>
                     </li>
                     <li th:each="i:${#numbers.sequence(1,countPage)}" class="page-item">
                         <a class="page-link" th:href="@{/board/list(pageNum=${i})}"
@@ -38,7 +42,9 @@
                         >[[ ${i} ]]</a>
                     </li>
                     <li class="page-item">
-                        <a class="page-link" th:href="@{/board/list(pageNum=${pageNum+1})}">Next</a>
+                        <a class="page-link" th:href="@{/board/list(pageNum=${pageNum+1})}"
+                                th:classappend="${pageNum} == ${countPage} ? 'disabled'"
+                        >Next</a>
                     </li>
                 </ul>
             </nav>
