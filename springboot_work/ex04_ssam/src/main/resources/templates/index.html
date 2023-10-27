@@ -24,6 +24,7 @@
         </div>
         <div class="row">
             <h1>물고기데이터예측해보기</h1>
+            <img id="img1" src="http://127.0.0.1:5000/img1/33/img1/500">
             <div>
                 <label for="length">length:</label>
                 <input type="text" id="length" class="form-control"/>
@@ -33,6 +34,7 @@
             <div class="mt-3">
                 <button id="predict" class="btn btn-dark">예측</button>
             </div>
+            <div><h1 id="print"></h1></div>
         </div>
     </div>
 </body>
@@ -44,6 +46,7 @@
       $("#predict").click( ()=>{
         let len = $("#length").val();
         let wei = $("#weight").val();
+        $("#img1").attr("src", `http://localhost:5000/img1/${len}/img1/${wei}`);
 
         $.ajax( {
             url: 'http://127.0.0.1:5000',
@@ -51,8 +54,7 @@
             type: 'post',
             contentType: 'application/json',
             success:function(res){
-                alert(res);
-                alert(res.msg);
+                $("#print").text(res.msg);
             }
         });
       });
