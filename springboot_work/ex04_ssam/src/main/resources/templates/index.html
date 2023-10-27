@@ -22,11 +22,56 @@
                 <p>springboot, mybatis, thymeleaf, validation 을 사용하였습니다.</p>
             </div>
         </div>
+        <div class="row">
+            <h1>물고기데이터예측해보기</h1>
+            <div>
+                <label for="length">length:</label>
+                <input type="text" id="length" class="form-control"/>
+                <label for="weight">weight:</label>
+                <input type="text" id="weight" class="form-control"/>
+            </div>
+            <div class="mt-3">
+                <button id="predict" class="btn btn-dark">예측</button>
+            </div>
+        </div>
     </div>
 </body>
 </html>
 <script>
     $(document).ready(function(){
       $(".slider").bxSlider();
+
+      $("#predict").click( ()=>{
+        let len = $("#length").val();
+        let wei = $("#weight").val();
+
+        $.ajax( {
+            url: 'http://127.0.0.1:5000',
+            data: JSON.stringify({ len, wei }),
+            type: 'post',
+            contentType: 'application/json',
+            success:function(res){
+                alert(res);
+                alert(res.msg);
+            }
+        });
+      });
     });
+
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
