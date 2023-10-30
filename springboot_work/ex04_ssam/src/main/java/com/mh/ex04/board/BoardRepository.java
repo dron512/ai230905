@@ -13,4 +13,5 @@ public interface BoardRepository {
     public int countRow();
     public Board selectRow(int idx);
 
+    public void update(Board board);
 }

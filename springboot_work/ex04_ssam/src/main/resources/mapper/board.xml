@@ -24,4 +24,13 @@
         ( #{title}, #{content}, #{name}, #{originalfilename} )
     </insert>
 
+    <update id="update" parameterType="Board">
+        UPDATE board
+            SET name = #{name},
+                title = #{title},
+                content = #{content},
+                originalfilename = #{originalfilename}
+        WHERE idx = #{idx}
+    </update>
+
 </mapper>

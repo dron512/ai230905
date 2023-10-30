@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -58,6 +59,8 @@ public class BoardController {
                             @Valid BoardReq boardReq,
                             BindingResult result,
                             MultipartFile file) {
+
+
         String originalFilename = file.getOriginalFilename();
         System.out.println(originalFilename);
 
@@ -65,6 +68,9 @@ public class BoardController {
         File dest = new File(uploadPath+"/"+originalFilename);
 
         try{
+            String path = new ClassPathResource("").getFile().getAbsolutePath();
+            System.out.println(path);
+
             file.transferTo(dest);
             // 파일이름을 boardReq에 저장
             boardReq.setOriginalfilename(originalFilename);
@@ -87,6 +93,67 @@ public class BoardController {
                 .build();
         // db insert 하는 것
         boardRepository.insert(board);
+        /* 저장하는 부분 끝 */
+        return "redirect:/board/list";
+    }
+
+    @GetMapping("updateform")
+    public String updateform(Model model, BoardReq boardReq) {
+        model.addAttribute("first", "true");
+
+        Board board = boardRepository.selectRow(boardReq.getIdx());
+
+        boardReq = BoardReq.builder()
+                .idx(board.getIdx())
+                .content(board.getContent())
+                .name(board.getName())
+                .title(board.getTitle())
+                .originalfilename(board.getOriginalfilename())
+                .build();
+
+        model.addAttribute("boardReq",boardReq);
+
+        return "board/updateform";
+    }
+
+    @PostMapping("updateproc")
+    public String updateproc(Model model,
+                            @Valid BoardReq boardReq,
+                            BindingResult result,
+                            MultipartFile file) {
+        String originalFilename = file.getOriginalFilename();
+        System.out.println(originalFilename);
+
+        System.out.println(uploadPath);
+        File dest = new File(uploadPath+"/"+originalFilename);
+
+        try{
+            String path = new ClassPathResource("").getFile().getAbsolutePath();
+            System.out.println(path);
+
+            file.transferTo(dest);
+            // 파일이름을 boardReq에 저장
+            boardReq.setOriginalfilename(originalFilename);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        // 유효성 검사
+        if (result.hasErrors()) {
+            return "board/updateform";
+        }
+        System.out.println(boardReq);
+        /* 저장하는 부분 시작 */
+        // boardReq 객체를 Board 객체로 변환
+        Board board = Board.builder()
+                .idx(boardReq.getIdx())
+                .originalfilename(boardReq.getOriginalfilename())
+                .content(boardReq.getContent())
+                .title(boardReq.getTitle())
+                .name(boardReq.getName())
+                .build();
+        // db insert 하는 것
+        boardRepository.update(board);
         /* 저장하는 부분 끝 */
         return "redirect:/board/list";
     }
