@@ -246,6 +246,7 @@
             button9.TabIndex = 17;
             button9.Text = "Naver";
             button9.UseVisualStyleBackColor = true;
+            button9.Click += button9_Click;
             // 
             // button10
             // 

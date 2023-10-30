@@ -8,7 +8,7 @@
     <h1>Board > list</h1>
     <div class="row">
         <div class="col">
-            <form action="/board/writeproc" method="post" th:object="${boardReq}">
+            <form action="/board/writeproc" method="post" th:object="${boardReq}" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="title" class="form-label">Title</label>
                     <input type="text" name="title" id="title" placeholder="title"
@@ -34,12 +34,16 @@
                            th:classappend="${first != 'true'} ? 'is-valid'" />
                     <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="invalid-feedback"></p>
                 </div>
+                <div class="mb-3">
+                    <label for="file" class="form-label">file</label>
+                    <input name="file" type="file" class="form-control" id="file" placeholder="file"/>
+                </div>
                 <div class="mb-3 row justify-content-between">
                     <div class="col-3">
                         <input type="submit" class="btn btn-dark" value="저장"/>
                     </div>
                     <div class="col-3 d-flex justify-content-end">
-                        <a href="/board/list(pageNum=1)" class="btn btn-dark">목록</a>
+                        <a th:href="@{/board/list(pageNum=1)}" class="btn btn-dark">목록</a>
                     </div>
                 </div>
             </form>

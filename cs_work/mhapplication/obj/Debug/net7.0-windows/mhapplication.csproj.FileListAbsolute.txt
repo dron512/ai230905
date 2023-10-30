@@ -19,3 +19,5 @@ D:\work\cs_work\mhapplication\obj\Debug\net7.0-windows\refint\mhapplication.dll
 D:\work\cs_work\mhapplication\obj\Debug\net7.0-windows\mhapplication.pdb
 D:\work\cs_work\mhapplication\obj\Debug\net7.0-windows\mhapplication.genruntimeconfig.cache
 D:\work\cs_work\mhapplication\obj\Debug\net7.0-windows\ref\mhapplication.dll
+D:\work\cs_work\mhapplication\bin\Debug\net7.0-windows\Newtonsoft.Json.dll
+D:\work\cs_work\mhapplication\obj\Debug\net7.0-windows\mhapplication.csproj.CopyComplete

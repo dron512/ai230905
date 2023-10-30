@@ -7,7 +7,6 @@ from io import BytesIO
 app = Flask(__name__)
 CORS(app)
 
-
 @app.route("/", methods=['POST'])
 def index():
     param = request.get_json()
@@ -25,9 +24,7 @@ def img1(x,y):
     plt.scatter(kn.bream_length, kn.bream_weight)
     plt.scatter(kn.smelt_length, kn.smelt_weight)
     plt.scatter(kn.my_length, kn.my_weight)
-
     plt.scatter(x,y,s=500)
-
 
     img_buffer = BytesIO()
     plt.savefig(img_buffer, format="png")

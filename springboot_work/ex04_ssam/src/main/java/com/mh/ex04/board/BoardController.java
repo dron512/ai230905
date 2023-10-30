@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -47,17 +48,25 @@ public class BoardController {
     }
 
     @PostMapping("writeproc")
-    public String writeproc(Model model, @Valid BoardReq boardReq, BindingResult result) {
+    public String writeproc(Model model,
+                            @Valid BoardReq boardReq,
+                            BindingResult result,
+                            MultipartFile file) {
+        String originalFilename = file.getOriginalFilename();
+        System.out.println(originalFilename);
+        // 유효성 검사
         if (result.hasErrors()) {
             return "board/writeform";
         }
         System.out.println(boardReq);
         /* 저장하는 부분 시작 */
+        // boardReq 객체를 Board 객체로 변환
         Board board = Board.builder()
                 .content(boardReq.getContent())
                 .title(boardReq.getTitle())
                 .name(boardReq.getName())
                 .build();
+        // db insert 하는 것
         boardRepository.insert(board);
         /* 저장하는 부분 끝 */
         return "redirect:/board/list";
