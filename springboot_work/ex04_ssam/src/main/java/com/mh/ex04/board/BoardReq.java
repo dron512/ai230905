@@ -14,4 +14,6 @@ public class BoardReq {
 
     @NotEmpty
     private String name;
+
+    private String originalfilename;
 }

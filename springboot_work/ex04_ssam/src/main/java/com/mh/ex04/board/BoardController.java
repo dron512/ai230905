@@ -3,6 +3,7 @@ package com.mh.ex04.board;
 import jakarta.validation.Valid;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.util.List;
 
 @Controller
@@ -20,6 +22,10 @@ public class BoardController {
 
     @Autowired
     BoardRepository boardRepository;
+
+    @Value("${file.upload.path}")
+    private String uploadPath;
+
 
     @GetMapping("list")
     public String list(Model model, @RequestParam(required = false, defaultValue = "1") int pageNum) {
@@ -54,6 +60,18 @@ public class BoardController {
                             MultipartFile file) {
         String originalFilename = file.getOriginalFilename();
         System.out.println(originalFilename);
+
+        System.out.println(uploadPath);
+        File dest = new File(uploadPath+"/"+originalFilename);
+
+        try{
+            file.transferTo(dest);
+            // 파일이름을 boardReq에 저장
+            boardReq.setOriginalfilename(originalFilename);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         // 유효성 검사
         if (result.hasErrors()) {
             return "board/writeform";
@@ -62,6 +80,7 @@ public class BoardController {
         /* 저장하는 부분 시작 */
         // boardReq 객체를 Board 객체로 변환
         Board board = Board.builder()
+                .originalfilename(boardReq.getOriginalfilename())
                 .content(boardReq.getContent())
                 .title(boardReq.getTitle())
                 .name(boardReq.getName())

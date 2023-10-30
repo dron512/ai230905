@@ -4,7 +4,7 @@
 <mapper namespace="com.mh.ex04.board.BoardRepository">
 
     <select id="selectRow" parameterType="Integer" resultType="Board">
-        select * from board where idx=#{idx}
+        select * from board where idx = #{idx}
     </select>
 
     <select id="list" resultType="Board" parameterType="Integer">
@@ -19,9 +19,9 @@
 
     <insert id="insert" parameterType="Board">
         insert into board
-        (title, content, name)
+        (title, content, name, originalfilename)
         values
-        (#{title}, #{content}, #{name})
+        ( #{title}, #{content}, #{name}, #{originalfilename} )
     </insert>
 
 </mapper>
