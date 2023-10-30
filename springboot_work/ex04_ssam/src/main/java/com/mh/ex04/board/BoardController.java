@@ -1,20 +1,25 @@
 package com.mh.ex04.board;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.util.UriUtils;
 
 import java.io.File;
+import java.net.MalformedURLException;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @Controller
@@ -58,19 +63,13 @@ public class BoardController {
     public String writeproc(Model model,
                             @Valid BoardReq boardReq,
                             BindingResult result,
-                            MultipartFile file) {
-
+                            MultipartFile file, HttpServletRequest request) {
 
         String originalFilename = file.getOriginalFilename();
-        System.out.println(originalFilename);
 
-        System.out.println(uploadPath);
         File dest = new File(uploadPath+"/"+originalFilename);
 
         try{
-            String path = new ClassPathResource("").getFile().getAbsolutePath();
-            System.out.println(path);
-
             file.transferTo(dest);
             // 파일이름을 boardReq에 저장
             boardReq.setOriginalfilename(originalFilename);
@@ -163,5 +162,21 @@ public class BoardController {
         Board board = boardRepository.selectRow(idx);
         model.addAttribute("board",board);
         return "board/view";
+    }
+
+    @GetMapping("/attach/{filename}")
+    public ResponseEntity<Resource> downloadAttach(@PathVariable String filename) throws MalformedURLException {
+
+//        FileEntity file = fileRepository.findById(id).orElse(null);
+
+        UrlResource resource = new UrlResource("file:" + uploadPath+"/"+filename);
+
+        String encodedFileName = UriUtils.encode("기록.jpg", StandardCharsets.UTF_8);
+
+        // 파일 다운로드 대화상자가 뜨도록 하는 헤더를 설정해주는 것
+        // Content-Disposition 헤더에 attachment; filename="업로드 파일명" 값을 준다.
+        String contentDisposition = "attachment; filename=\"" + encodedFileName + "\"";
+
+        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,contentDisposition).body(resource);
     }
 }

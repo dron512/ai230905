@@ -22,7 +22,7 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">file</label>
-                <p class="border p-2 m-3" th:text="${board.originalfilename}"></p>
+                <a th:href="@{'/'+${board.originalfilename}}" th:text="${board.originalfilename}"></a>
             </div>
             <div class="mb-3 row justify-content-between">
                 <div class="col-3 d-flex">
