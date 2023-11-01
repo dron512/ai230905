@@ -20,7 +20,10 @@ import org.springframework.web.util.UriUtils;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("board")
@@ -166,12 +169,17 @@ public class BoardController {
 
     @PostMapping("delete")
     @ResponseBody
-    public String delete(int[] idx, int bb){
-        System.out.println(idx);
-        System.out.println(bb);
-        System.out.println("delete");
-        return "이문장이 날아간다";
+    public BoardJson delete(@RequestBody BoardJson boardJson){
+        // boardJson.idx = [1,2,3]
+        List<Integer> idxList = new ArrayList<>();
+        for (int temp : boardJson.getIdx())
+            idxList.add(temp);
+        boardRepository.delete(idxList);
+
+        BoardJson bj = BoardJson.builder().msg("성공").build();
+        return bj;
     }
+
 
     @GetMapping("/attach/{filename}")
     public ResponseEntity<Resource> downloadAttach(@PathVariable String filename) throws MalformedURLException {

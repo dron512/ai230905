@@ -72,7 +72,16 @@
         const aa = {
             url:'/board/delete',
             type:'post',
-            data: { idx: [1,2,3], bb:10 }
+            contentType: "application/json",
+            dataType: 'json', // 추가
+            data: JSON.stringify({idx:[10,11,12]}),
+            success:function(res){
+                console.log(res);
+                console.log(res.msg);
+            },
+            error:function(e){
+                console.log(e);
+            }
         }
         $.ajax( aa );
     }

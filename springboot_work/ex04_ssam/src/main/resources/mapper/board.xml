@@ -33,4 +33,12 @@
         WHERE idx = #{idx}
     </update>
 
+    <delete id="delete" parameterType="java.util.List">
+        delete from board
+        WHERE idx in
+        <foreach item="idx" collection="idxList" open="(" separator="," close=")">
+            #{idx}
+        </foreach>
+    </delete>
+
 </mapper>
