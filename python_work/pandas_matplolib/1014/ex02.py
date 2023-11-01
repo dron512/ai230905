@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, Response
+from flask import Flask, request, jsonify, Response, render_template
 from flask_cors import CORS
 import kn
 import matplotlib.pyplot as plt
@@ -14,6 +14,10 @@ def index():
     wei = int(param['wei'])
     pred = str(kn.kn.predict([[len, wei]]))
     return jsonify({"msg": pred})
+
+@app.route("/aa", methods=['POST'])
+def aa():
+    return render_template('aa.html')
 
 
 @app.route("/img1/<int:x>/img1/<int:y>")

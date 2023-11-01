@@ -10,11 +10,15 @@
         <div class="col">
             <table class="table table-striped">
                 <tr>
+                    <th></th>
                     <th>idx</th>
                     <th>제목</th>
                     <th>작성자</th>
                 </tr>
                 <tr th:each="board : ${list}">
+                    <td class="text-center">
+                        <input type="checkbox" name="idx" id="" th:value="${board.idx}" class="form-check-input">
+                    </td>
                     <td th:text="${board.idx}"></td>
                     <td>
                         <a th:href="@{/board/view(idx=${board.idx})}" th:text="${board.title}"></a>
@@ -53,8 +57,25 @@
     <div class="row">
         <div class="col">
             <a href="/board/writeform" class="btn btn-dark">글쓰기</a>
+            <button onclick="doDelete()" class="btn btn-dark">삭제</button>
         </div>
     </div>
 </div>
 </body>
 </html>
+<script>
+    let a = 10;
+    let b = [10,20,30];
+    let c = {a:10,b:20,c:30};
+
+    function doDelete(){
+        const aa = {
+            url:'/board/delete',
+            type:'post',
+            data: { idx: [1,2,3], bb:10 }
+        }
+        $.ajax( aa );
+    }
+
+
+</script>

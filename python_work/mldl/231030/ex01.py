@@ -1,5 +1,6 @@
 from sklearn.neighbors import KNeighborsClassifier
 import numpy as np
+import matplotlib.pyplot as plt
 
 fish_length = [25.4, 26.3, 26.5, 29.0, 29.0, 29.7, 29.7, 30.0, 30.0, 30.7, 31.0, 31.0,
                31.5, 32.0, 32.0, 32.0, 33.0, 33.0, 33.5, 33.5, 34.0, 34.0, 34.5, 35.0,
@@ -51,6 +52,21 @@ test_input = input_arr[index[35:]]
 test_target = target_arr[index[35:]]
 
 print(train_input)
+
+plt.scatter(train_input[:,0],train_input[:,1])
+plt.scatter(test_input[:,0],test_input[:,1])
+plt.show()
+
+kn = KNeighborsClassifier()
+kn.fit(train_input,train_target)
+
+score = kn.score(test_input,test_target)
+print(score)
+
+predValue = kn.predict(test_input)
+print(predValue)
+
+print(test_target)
 
 # print(fish_data)
 # print(input_arr)

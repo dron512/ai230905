@@ -164,6 +164,15 @@ public class BoardController {
         return "board/view";
     }
 
+    @PostMapping("delete")
+    @ResponseBody
+    public String delete(int[] idx, int bb){
+        System.out.println(idx);
+        System.out.println(bb);
+        System.out.println("delete");
+        return "이문장이 날아간다";
+    }
+
     @GetMapping("/attach/{filename}")
     public ResponseEntity<Resource> downloadAttach(@PathVariable String filename) throws MalformedURLException {
 
