@@ -124,6 +124,7 @@ public class BoardController {
                             BindingResult result,
                             MultipartFile file) {
         String originalFilename = file.getOriginalFilename();
+
         System.out.println(originalFilename);
 
         System.out.println(uploadPath);
@@ -171,9 +172,12 @@ public class BoardController {
     @ResponseBody
     public BoardJson delete(@RequestBody BoardJson boardJson){
         // boardJson.idx = [1,2,3]
-        List<Integer> idxList = new ArrayList<>();
-        for (int temp : boardJson.getIdx())
-            idxList.add(temp);
+//        List<Integer> idxList = new ArrayList<>();
+//        for (int temp : boardJson.getIdx())
+//            idxList.add(temp);
+        List<Integer> idxList = Arrays.stream(boardJson.getIdx())
+                                .boxed()
+                                .collect(Collectors.toList());
         boardRepository.delete(idxList);
 
         BoardJson bj = BoardJson.builder().msg("성공").build();
@@ -182,13 +186,14 @@ public class BoardController {
 
 
     @GetMapping("/attach/{filename}")
-    public ResponseEntity<Resource> downloadAttach(@PathVariable String filename) throws MalformedURLException {
+    public ResponseEntity<Resource> downloadAttach(@PathVariable String filename)
+            throws MalformedURLException {
 
 //        FileEntity file = fileRepository.findById(id).orElse(null);
 
         UrlResource resource = new UrlResource("file:" + uploadPath+"/"+filename);
 
-        String encodedFileName = UriUtils.encode("기록.jpg", StandardCharsets.UTF_8);
+        String encodedFileName = UriUtils.encode(filename, StandardCharsets.UTF_8);
 
         // 파일 다운로드 대화상자가 뜨도록 하는 헤더를 설정해주는 것
         // Content-Disposition 헤더에 attachment; filename="업로드 파일명" 값을 준다.
