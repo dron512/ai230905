@@ -9,13 +9,31 @@ app = Flask(__name__)
 CORS(app)
 
 @app.route("/chartData", methods=['GET'])
-def index():
-    ary = np.array([10,20,30,40,50])
+def chartData():
+    ary = np.array([100,20,30,5,60])
     np.random.shuffle(ary)
-    print(ary)
+    print(list(ary))
     # param = request.get_json()
     # print(param)
-    return str(ary)
+    return str(list(ary))
+
+@app.route("/barData", methods=['GET'])
+def barData():
+    ary = np.array([10000,1200,14000,5000,7000])
+    np.random.shuffle(ary)
+    print(list(ary))
+    # param = request.get_json()
+    # print(param)
+    return str(list(ary))
+
+@app.route("/pieData", methods=['GET'])
+def pieData():
+    ary = np.array([100,20,30,5,60])
+    np.random.shuffle(ary)
+    print(list(ary))
+    # param = request.get_json()
+    # print(param)
+    return str(list(ary))
 
 
 # @app.route("/", methods=['POST'])

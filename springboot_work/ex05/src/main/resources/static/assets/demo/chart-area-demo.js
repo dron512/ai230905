@@ -53,9 +53,15 @@ var myAreaChart = new Chart(ctx, {
   }
 });
 
-const newData = [40,50,10,20,30];
-
 setInterval( ()=>{
-    myAreaChart.data.datasets[0].data = newData;
-    myAreaChart.update();
+    $.ajax({
+           url:'http://127.0.0.1:5000/chartData',
+           type:'get',
+           success:function(res){
+               myAreaChart.data.datasets[0].data = res.slice(1, -1).split(',').map((num)=> num );
+               myAreaChart.update();
+           },
+           error:function(e){
+           }
+    })
 }, 3000);

@@ -7,12 +7,12 @@ var ctx = document.getElementById("myBarChart");
 var myBarChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ["January", "February", "March", "April", "May", "June"],
+    labels: ["January", "February", "March", "April", "May"],
     datasets: [{
       label: "Revenue",
       backgroundColor: "rgba(2,117,216,1)",
       borderColor: "rgba(2,117,216,1)",
-      data: [4215, 5312, 14984, 7841, 9821, 6251],
+      data: [4215, 5312, 14984, 7841, 9821],
     }],
   },
   options: {
@@ -25,7 +25,7 @@ var myBarChart = new Chart(ctx, {
           display: false
         },
         ticks: {
-          maxTicksLimit: 6
+          maxTicksLimit: 5
         }
       }],
       yAxes: [{
@@ -44,3 +44,16 @@ var myBarChart = new Chart(ctx, {
     }
   }
 });
+
+setInterval( ()=>{
+    $.ajax({
+           url:'http://127.0.0.1:5000/barData',
+           type:'get',
+           success:function(res){
+               myBarChart.data.datasets[0].data = res.slice(1, -1).split(',').map((num)=> num );
+               myBarChart.update();
+           },
+           error:function(e){
+           }
+    })
+}, 3000);
