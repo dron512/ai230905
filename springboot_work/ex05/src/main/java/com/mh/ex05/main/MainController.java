@@ -13,12 +13,12 @@ public class MainController {
 
     @GetMapping("staticnavigation")
     public String staticnavigation(){
-        return "layout-sidenav-light";
+        return "layout-static";
     }
 
     @GetMapping("lightsidenav")
     public String lightsidenav(){
-        return "layout-static";
+        return "layout-sidenav-light";
     }
 
 }

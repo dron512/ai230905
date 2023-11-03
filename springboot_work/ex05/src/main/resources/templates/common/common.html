@@ -44,7 +44,7 @@
 </nav>
 <div id="layoutSidenav">
     <div id="layoutSidenav_nav">
-        <nav th:fragment="snav(menu)" class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+        <nav th:fragment="snav(menu)" th:class="${'sb-sidenav accordion sb-sidenav-'+menu}" id="sidenavAccordion">
             <div class="sb-sidenav-menu">
                 <div class="nav">
                     <div class="sb-sidenav-menu-heading">Core</div>
