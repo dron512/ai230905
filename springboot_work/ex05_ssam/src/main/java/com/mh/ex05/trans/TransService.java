@@ -2,6 +2,7 @@ package com.mh.ex05.trans;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
@@ -14,10 +15,12 @@ import java.util.Map;
 
 @Service
 public class TransService {
-    public String main(String arg) {
-        String clientId = "kuerIV5x7ADsVO3uklOA";//애플리케이션 클라이언트 아이디값";
-        String clientSecret = "lgPeJvemaG";//애플리케이션 클라이언트 시크릿값";
 
+    @Value("cliendId")
+    private String clientId;
+    @Value("clientSecret")
+    private String clientSecret;
+    public String main(String arg) {
         String apiURL = "https://openapi.naver.com/v1/papago/n2mt";
         String text;
         try {

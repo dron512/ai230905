@@ -1,0 +1,27 @@
+\\192.168.0.135\공유\빅데이터 10차-파이썬 프로젝트2조\saju_project2\bin\Debug\saju_project2.exe.config
+\\192.168.0.135\공유\빅데이터 10차-파이썬 프로젝트2조\saju_project2\bin\Debug\saju_project2.exe
+\\192.168.0.135\공유\빅데이터 10차-파이썬 프로젝트2조\saju_project2\bin\Debug\saju_project2.pdb
+\\192.168.0.135\공유\빅데이터 10차-파이썬 프로젝트2조\saju_project2\obj\Debug\saju_project2.csproj.AssemblyReference.cache
+\\192.168.0.135\공유\빅데이터 10차-파이썬 프로젝트2조\saju_project2\obj\Debug\saju_project2.csproj.SuggestedBindingRedirects.cache
+\\192.168.0.135\공유\빅데이터 10차-파이썬 프로젝트2조\saju_project2\obj\Debug\saju_project2.Properties.Resources.resources
+\\192.168.0.135\공유\빅데이터 10차-파이썬 프로젝트2조\saju_project2\obj\Debug\saju_project2.csproj.GenerateResource.cache
+\\192.168.0.135\공유\빅데이터 10차-파이썬 프로젝트2조\saju_project2\obj\Debug\saju_project2.csproj.CoreCompileInputs.cache
+\\192.168.0.135\공유\빅데이터 10차-파이썬 프로젝트2조\saju_project2\obj\Debug\saju_project2.exe
+\\192.168.0.135\공유\빅데이터 10차-파이썬 프로젝트2조\saju_project2\obj\Debug\saju_project2.pdb
+\\192.168.0.135\공유\빅데이터 10차-파이썬 프로젝트2조\saju_project2\obj\Debug\saju_project2.saju_main.resources
+\\192.168.0.135\공유\빅데이터 10차-파이썬 프로젝트2조\saju_project2\obj\Debug\saju_project2.saju_result.resources
+C:\Users\KB\Desktop\saju_project2\bin\Debug\saju_project2.exe.config
+C:\Users\KB\Desktop\saju_project2\bin\Debug\saju_project2.exe
+C:\Users\KB\Desktop\saju_project2\bin\Debug\saju_project2.pdb
+C:\Users\KB\Desktop\saju_project2\obj\Debug\saju_project2.csproj.AssemblyReference.cache
+C:\Users\KB\Desktop\saju_project2\obj\Debug\saju_project2.csproj.SuggestedBindingRedirects.cache
+C:\Users\KB\Desktop\saju_project2\obj\Debug\saju_project2.saju_main.resources
+C:\Users\KB\Desktop\saju_project2\obj\Debug\saju_project2.Properties.Resources.resources
+C:\Users\KB\Desktop\saju_project2\obj\Debug\saju_project2.saju_result.resources
+C:\Users\KB\Desktop\saju_project2\obj\Debug\saju_project2.csproj.GenerateResource.cache
+C:\Users\KB\Desktop\saju_project2\obj\Debug\saju_project2.csproj.CoreCompileInputs.cache
+C:\Users\KB\Desktop\saju_project2\obj\Debug\saju_project2.exe
+C:\Users\KB\Desktop\saju_project2\obj\Debug\saju_project2.pdb
+C:\Users\KB\Desktop\saju_project2\bin\Debug\Newtonsoft.Json.dll
+C:\Users\KB\Desktop\saju_project2\bin\Debug\Newtonsoft.Json.xml
+C:\Users\KB\Desktop\saju_project2\obj\Debug\saju_project2.csproj.CopyComplete

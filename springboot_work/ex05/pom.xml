@@ -18,6 +18,13 @@
 		<querydsl.version>5.0.0</querydsl.version>
 	</properties>
 	<dependencies>
+
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+
 		<dependency>
 			<groupId>com.querydsl</groupId>
 			<artifactId>querydsl-apt</artifactId>
