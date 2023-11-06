@@ -22,8 +22,8 @@
                     <div class="card-body">
                         <p class="mb-0">
                             <form>
-                                <input type="text" name="transText" class="form-control mb-3">
-                                <button class="btn btn-dark">번역</button>
+                                <input type="text" name="transText" class="form-control mb-3" id="inputText">
+                                <button type="button" class="btn btn-dark" id="req">번역</button>
                             </form>
                         </p>
                     </div>
@@ -52,3 +52,22 @@
 <script src="/js/scripts.js"></script>
 </body>
 </html>
+<script>
+    $('#req').click(()=>{
+        $.ajax({
+            url: '/trans/req',
+            type: 'post',
+            data: JSON.stringify(  {
+                    "text": $('#inputText').val(),
+                    "text2":"text2"
+                    }   ),
+            contentType: 'application/json',
+            success:function(res){
+                $("#printTrans").text(res);
+            },
+            error:function(e){
+                console.log("e"+e);
+            }
+        });
+    });
+</script>
