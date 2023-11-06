@@ -20,7 +20,6 @@ public class TransController {
     @ResponseBody
     public String req(@RequestBody TranslationJson translationJson){
         System.out.println(translationJson);
-        transService.main(translationJson.getText());
-        return "asdfasdfasedrqwer";
+        return transService.main(translationJson.getText());
     }
 }

@@ -1,5 +1,7 @@
 package com.mh.ex05.trans;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
@@ -12,7 +14,7 @@ import java.util.Map;
 
 @Service
 public class TransService {
-    public void main(String arg) {
+    public String main(String arg) {
         String clientId = "kuerIV5x7ADsVO3uklOA";//애플리케이션 클라이언트 아이디값";
         String clientSecret = "lgPeJvemaG";//애플리케이션 클라이언트 시크릿값";
 
@@ -31,9 +33,34 @@ public class TransService {
         String responseBody = post(apiURL, requestHeaders, text);
 
         System.out.println(responseBody);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        try {
+            // JSON 문자열을 Map으로 변환
+            Map<String, Object> jsonMap = objectMapper.readValue(responseBody, new TypeReference<Map<String, Object>>() {});
+
+            // 변환된 Map 객체 출력
+            System.out.println(jsonMap);
+
+            String message = jsonMap.get("message").toString();
+
+            System.out.println(message.indexOf("translatedText"));
+
+            int translatedText = message.indexOf("translatedText");
+            int engineType = message.indexOf("engineType");
+
+            System.out.println(message.substring(translatedText,engineType).split("=")[1]);
+
+            return message.substring(translatedText,engineType).split("=")[1];
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
     }
 
-    private static String post(String apiUrl, Map<String, String> requestHeaders, String text) {
+    private String post(String apiUrl, Map<String, String> requestHeaders, String text) {
         HttpURLConnection con = connect(apiUrl);
         String postParams = "source=ko&target=en&text=" + text; //원본언어: 한국어 (ko) -> 목적언어: 영어 (en)
         try {
@@ -61,7 +88,7 @@ public class TransService {
         }
     }
 
-    private static HttpURLConnection connect(String apiUrl) {
+    private HttpURLConnection connect(String apiUrl) {
         try {
             URL url = new URL(apiUrl);
             return (HttpURLConnection) url.openConnection();
@@ -72,7 +99,7 @@ public class TransService {
         }
     }
 
-    private static String readBody(InputStream body) {
+    private String readBody(InputStream body) {
         InputStreamReader streamReader = new InputStreamReader(body);
 
         try (BufferedReader lineReader = new BufferedReader(streamReader)) {
