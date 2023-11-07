@@ -38,13 +38,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div style="height: 100vh"></div>
-                <div class="card mb-4">
-                    <div class="card-body">When scrolling, the navigation stays at the top of the page. This is the end
-                        of the static navigation demo.
-                    </div>
-                </div>
             </div>
         </main>
         <footer th:replace="~{common/common::cfooter('GuestBook')}">
@@ -62,12 +55,12 @@
             url: '/trans/req',
             type: 'post',
             data: JSON.stringify(  {
-                    "text": $('#inputText').val(),
+                    "text": source,
                     "text2":"text2"
                     }   ),
             contentType: 'application/json',
             success:function(res){
-                let prependTag = `<div class="card bg-primary text-white my-4" >
+                let prependTag = `<div class="card bg-primary text-white my-4">
                                         <div class="card-body">${source}</div>
                                         <div class="card-footer bg-success">${res}</div>
                                     </div>`;
