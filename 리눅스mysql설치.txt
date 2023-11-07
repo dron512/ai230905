@@ -1,0 +1,9 @@
+
+sudo apt-get update
+sudo apt-get install mysql-server
+
+sudo ufw allow mysql
+sudo systemctl start mysql
+
+CREATE USER 'pmh'@'localhost' IDENTIFIED BY '1234';
+FLUSH PRIVILEGES;
