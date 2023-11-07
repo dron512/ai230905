@@ -54,6 +54,10 @@ var myAreaChart = new Chart(ctx, {
 });
 
 setInterval( ()=>{
+    const randomArray = Array.from({ length: 5 }, () => Math.floor(Math.random() * 151));
+    myAreaChart.data.datasets[0].data = randomArray;
+    myAreaChart.update();
+    /*
     $.ajax({
            url:'http://127.0.0.1:5000/chartData',
            type:'get',
@@ -64,4 +68,5 @@ setInterval( ()=>{
            error:function(e){
            }
     })
+    */
 }, 3000);

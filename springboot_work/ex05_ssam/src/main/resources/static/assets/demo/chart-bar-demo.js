@@ -46,6 +46,10 @@ var myBarChart = new Chart(ctx, {
 });
 
 setInterval( ()=>{
+   const randomArray = Array.from({ length: 5 }, () => Math.floor(Math.random() * 15001));
+   myBarChart.data.datasets[0].data = randomArray;
+   myBarChart.update();
+   /*
     $.ajax({
            url:'http://127.0.0.1:5000/barData',
            type:'get',
@@ -56,4 +60,5 @@ setInterval( ()=>{
            error:function(e){
            }
     })
+    */
 }, 3000);
