@@ -16,8 +16,10 @@ import java.util.Map;
 @Service
 public class TransService {
 
-    private String clientId = "kuerIV5x7ADsVO3uklOA";
-    private String clientSecret = "lgPeJvemaG";
+    @Value("${clientId}")
+    private String clientId;
+    @Value("${clientSecret}")
+    private String clientSecret;
 
     public String main(String arg) {
 

@@ -30,9 +30,12 @@
                 </div>
                 <div class="card mb-4">
                     <div class="card-body">
-                        <p class="mb-0" id="printTrans">
-                            내요내욘애
-                        </p>
+                        <div th:each="trans: ${list}" class="mb-0" id="printTrans">
+                            <div class="card bg-primary text-white my-4" >
+                                <div class="card-body" th:text="${trans.source}"></div>
+                                <div class="card-footer bg-success" th:text="${trans.target}"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -54,6 +57,7 @@
 </html>
 <script>
     $('#req').click(()=>{
+        let source = $('#inputText').val();
         $.ajax({
             url: '/trans/req',
             type: 'post',
@@ -63,7 +67,12 @@
                     }   ),
             contentType: 'application/json',
             success:function(res){
-                $("#printTrans").text(res);
+                let prependTag = `<div class="card bg-primary text-white my-4" >
+                                        <div class="card-body">${source}</div>
+                                        <div class="card-footer bg-success">${res}</div>
+                                    </div>`;
+                $("#printTrans").prepend(prependTag);
+                $('#inputText').val('');
             },
             error:function(e){
                 console.log("e"+e);
