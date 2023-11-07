@@ -11,6 +11,9 @@ public class TransController {
     @Autowired
     TransService transService;
 
+    @Autowired
+    TransRepository transRepository;
+
     @GetMapping("trans")
     public String trans(){
         return "trans/trans";
@@ -19,7 +22,16 @@ public class TransController {
     @PostMapping("req")
     @ResponseBody
     public String req(@RequestBody TranslationJson translationJson){
+        System.out.println("일로온다....");
         System.out.println(translationJson);
-        return transService.main(translationJson.getText());
+
+        String target = transService.main(translationJson.getText());
+
+        transRepository.save(Trans.builder()
+                        .source(translationJson.getText())
+                        .target(target)
+                        .build());
+
+        return target;
     }
 }
