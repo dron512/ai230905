@@ -16,12 +16,14 @@ import java.util.Map;
 @Service
 public class TransService {
 
-    @Value("clientId")
-    private String clientId;
-    @Value("clientSecret")
-    private String clientSecret;
+    private String clientId = "kuerIV5x7ADsVO3uklOA";
+    private String clientSecret = "lgPeJvemaG";
 
     public String main(String arg) {
+
+        System.out.println(clientId);
+        System.out.println(clientSecret);
+
         String apiURL = "https://openapi.naver.com/v1/papago/n2mt";
         String text;
         try {
