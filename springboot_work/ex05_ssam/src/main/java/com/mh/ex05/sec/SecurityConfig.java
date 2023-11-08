@@ -1,10 +1,14 @@
 package com.mh.ex05.sec;
 
+import com.mh.ex05.member.Member;
+import com.mh.ex05.member.MemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -18,19 +22,23 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
+//    @Autowired
+//    PasswordEncoder passwordEncoder;
+//
+//    @Autowired
+//    MemberRepository memberRepository;
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
 
-        http.csrf(csrf -> csrf.disable())
+        http
                 .authorizeRequests(
                           req ->
-
                              req
                                      .requestMatchers("/css/**", "/js/**", "/img/**","/assets/**").permitAll()
-                                     .requestMatchers("/chartData","/barData","/tran/req").permitAll()
-
+                                     .requestMatchers("/auth/**").permitAll()
+                                     .requestMatchers("/").permitAll()
                                 .anyRequest().authenticated()
-
                      )
                 .formLogin( login ->
                             login
@@ -38,7 +46,22 @@ public class SecurityConfig {
                                     .defaultSuccessUrl("/")
                                 .usernameParameter("email")
                                     .failureUrl("/auth/login/error")
-                                .permitAll() ) ;
+                                .permitAll() )
+                .logout( logout->logout.logoutUrl("/auth/logout") )
+//
+//                .userDetailsService((email)->{
+//                    Member dbMember = memberRepository.findByEmail(email);
+//
+//                    if(dbMember == null)
+//                        throw new UsernameNotFoundException(email);
+//
+//                    return User.builder()
+//                            .username(dbMember.getEmail())
+//                            .password(dbMember.getPassword())
+//                            .roles("ADMIN")
+//                            .build();
+//                })
+                ;
 
         return http.build();
     }

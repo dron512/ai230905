@@ -15,15 +15,26 @@ public class AuthService implements UserDetailsService {
     @Autowired
     PasswordEncoder passwordEncoder;
 
+    @Autowired
+    MemberRepository memberRepository;
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         System.out.println("일로온다");
         System.out.println(email);
 
+        // member table 에 email있는지 확인
+
+        Member dbMember = memberRepository.findByEmail(email);
+
+        if(dbMember == null)
+            throw new UsernameNotFoundException(email);
+
         return User.builder()
-                .username("aa@naver.com")
-                .password(passwordEncoder.encode("1234"))
+                .username(dbMember.getEmail())
+                .password(dbMember.getPassword())
                 .roles("ADMIN")
                 .build();
+
     }
 }

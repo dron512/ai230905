@@ -6,4 +6,9 @@ sudo ufw allow mysql
 sudo systemctl start mysql
 
 CREATE USER 'pmh'@'localhost' IDENTIFIED BY '1234';
+grant all privileges on *.* to 'pmh'@'localhost'
 FLUSH PRIVILEGES;
+
+CREATE DATABASE `jpatest` /*!40100 COLLATE 'utf8mb4_general_ci' */
+
+수명주기에 package 실행해야함
