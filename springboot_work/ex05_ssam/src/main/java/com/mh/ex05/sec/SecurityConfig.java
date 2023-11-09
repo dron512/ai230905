@@ -32,6 +32,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
 
         http
+                .csrf(csrf->csrf.disable())
                 .authorizeRequests(
                           req ->
                              req
@@ -43,7 +44,7 @@ public class SecurityConfig {
                 .formLogin( login ->
                             login
                                 .loginPage("/auth/login")
-                                    .defaultSuccessUrl("/")
+                                    .defaultSuccessUrl("/",true)
                                 .usernameParameter("email")
                                     .failureUrl("/auth/login/error")
                                 .permitAll() )

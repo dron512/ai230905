@@ -35,7 +35,7 @@ public class AuthService implements UserDetailsService {
         return User.builder()
                 .username(dbMember.getEmail())
                 .password(dbMember.getPassword())
-                .roles("ADMIN")
+                .roles("USER")
                 .build();
 
     }

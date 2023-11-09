@@ -30,7 +30,8 @@
                 </div>
                 <div class="card mb-4">
                     <div class="card-body">
-                        <div th:each="trans: ${list}" class="mb-0" id="printTrans">
+                        <div id="printTrans"></div>
+                        <div th:each="trans: ${list}" class="mb-0" th:id="printTrans">
                             <div class="card bg-primary text-white my-4" >
                                 <div class="card-body" th:text="${trans.source}"></div>
                                 <div class="card-footer bg-success" th:text="${trans.target}"></div>

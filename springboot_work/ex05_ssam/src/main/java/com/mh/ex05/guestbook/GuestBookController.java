@@ -16,8 +16,8 @@ public class GuestBookController {
     @GetMapping("test")
     @ResponseBody
     public String test(){
-        guestBookRepository.save(new GuestBook(1l,"홍길동"));
-        guestBookRepository.save(new GuestBook(2l,"이길동"));
+//        guestBookRepository.save(new GuestBook(1l,"홍길동"));
+//        guestBookRepository.save(new GuestBook(2l,"이길동"));
         return "test";
     }
 
