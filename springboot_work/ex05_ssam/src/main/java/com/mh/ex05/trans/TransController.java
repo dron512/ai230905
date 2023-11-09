@@ -30,9 +30,6 @@ public class TransController {
     @PostMapping("req")
     @ResponseBody
     public String req(@RequestBody TranslationJson translationJson){
-        System.out.println("일로온다....");
-        System.out.println(translationJson);
-
         String target = transService.main(translationJson.getText());
 
         transRepository.save(Trans.builder()
