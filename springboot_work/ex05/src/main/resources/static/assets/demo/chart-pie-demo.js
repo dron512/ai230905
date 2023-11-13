@@ -16,6 +16,10 @@ var myPieChart = new Chart(ctx, {
 });
 
 setInterval( ()=>{
+    const randomArray = Array.from({ length: 5 }, () => Math.floor(Math.random() * 101));
+    myPieChart.data.datasets[0].data = randomArray;
+    myPieChart.update();
+    /*
     $.ajax({
            url:'http://127.0.0.1:5000/pieData',
            type:'get',
@@ -26,5 +30,6 @@ setInterval( ()=>{
            error:function(e){
            }
     })
+    */
 }, 3000);
 

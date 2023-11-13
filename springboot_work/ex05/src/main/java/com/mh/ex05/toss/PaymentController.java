@@ -39,6 +39,7 @@ public class PaymentController {
         connection.setRequestProperty("Content-Type", "application/json");
         connection.setRequestMethod("POST");
         connection.setDoOutput(true);
+
         JSONObject obj = new JSONObject();
         obj.put("orderId", orderId);
         obj.put("amount", amount);

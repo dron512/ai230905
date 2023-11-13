@@ -22,11 +22,6 @@ public class AuthService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        System.out.println("일로온다");
-        System.out.println(email);
-
-        // member table 에 email있는지 확인
-
         Member dbMember = memberRepository.findByEmail(email);
 
         if(dbMember == null)

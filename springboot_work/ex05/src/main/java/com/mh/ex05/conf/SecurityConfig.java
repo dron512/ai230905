@@ -14,10 +14,12 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests(
+        http.csrf(csrf->csrf.disable())
+                .authorizeHttpRequests(
                         (authorizeRequests) -> authorizeRequests
                                 .requestMatchers("/css/**", "/js/**", "/img/**","/assets/**").permitAll()
+                                .requestMatchers("/auth/**").permitAll()
+                                .requestMatchers("/main.html").permitAll()
 //                                .requestMatchers("/", "/members/**", "/item/**", "/images/**").permitAll()
 //                                .requestMatchers("/admin/**").hasRole("ADMIN")
                                 .anyRequest().authenticated()
@@ -26,7 +28,7 @@ public class SecurityConfig {
                 .formLogin(
                         (formLogin) -> formLogin
                                 .loginPage("/auth/login")
-                                .defaultSuccessUrl("/")
+                                .defaultSuccessUrl("/",true)
                                 .usernameParameter("email")
                                 .failureUrl("/auth/login/error")
                                 .permitAll()
