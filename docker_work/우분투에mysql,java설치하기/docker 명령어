@@ -1,0 +1,22 @@
+# 다운로드
+docker pull 이미지명
+# 이미지 리스트 확인
+docker images
+
+# 우분투 컨테이너 실행시 대화형으로 실행
+docker run -it ubuntu
+# 현재 실행되고 있는 컨테이너 보기
+docker ps 
+# 현재 실행되지 않는 컨테이너까지 보기
+docker ps -al
+
+docker run -it -d --name ubuntu-container -p 8080:8080 -p 3307:3306 ubuntu
+docker run -it -d --name ubuntu-test -p 8080:8080 -p 3307:3306 ubuntu
+
+docker exec -it ubuntu-test bash
+
+
+apt-get update
+apt-get upgrade
+
+apt-get install sudo -y
