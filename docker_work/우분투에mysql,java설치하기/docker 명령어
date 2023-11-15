@@ -11,10 +11,9 @@ docker ps
 docker ps -al
 
 docker run -it -d --name ubuntu-container -p 8080:8080 -p 3307:3306 ubuntu
-docker run -it -d --name ubuntu-test -p 8080:8080 -p 3307:3306 ubuntu
+docker run -it -d --privileged --name ubuntu-test -p 8080:8080 -p 3307:3306 ubuntu
 
 docker exec -it ubuntu-test bash
-
 
 apt-get update
 apt-get upgrade
