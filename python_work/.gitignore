@@ -3,5 +3,7 @@ venv1/
 pandas_matplolib/0927/dist/*
 pandas_matplolib/0927/build/*
 *.pickle
-opinrank+review+dataset/
+opinrank+review+dataset/*
 opinrank+review+dataset.zip
+
+*.csv
