@@ -36,13 +36,13 @@ def pieData():
     return str(list(ary))
 
 
-# @app.route("/", methods=['POST'])
-# def index():
-#     param = request.get_json()
-#     len = int(param['len'])
-#     wei = int(param['wei'])
-#     pred = str(kn.kn.predict([[len, wei]]))
-#     return jsonify({"msg": pred})
+@app.route("/", methods=['POST'])
+def index():
+    param = request.get_json()
+    len = int(param['len'])
+    wei = int(param['wei'])
+    pred = str(kn.kn.predict([[len, wei]]))
+    return jsonify({"msg": pred})
 #
 # @app.route("/aa", methods=['POST'])
 # def aa():
